@@ -14,7 +14,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import useStyles from './AppBarStyle'
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
 function NavigationBar() {
   const classes = useStyles();
@@ -23,7 +23,7 @@ function NavigationBar() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+  const anchor = "right";
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -44,11 +44,10 @@ function NavigationBar() {
   const dispatch = useDispatch();
   
   const handleDrawerOpen = () => {
-    dispatch({type: "OPEN"});
+    dispatch({type: "TOGGLE", value: true, anchor});
   };
 
   
-  const open = useSelector(state => state.AppBarReducer.open)
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -109,7 +108,7 @@ function NavigationBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.bar}>
         <Toolbar>
           
           <div className={classes.sectionMobile}>
@@ -183,7 +182,10 @@ function NavigationBar() {
 
 function mapStateToProps(state) {
     return {
-        open: state.AppBarReducer.open
+        right: state.AppBarReducer.right,
+        left: state.AppBarReducer.left,
+        bottom: state.AppBarReducer.bottom,
+        top: state.AppBarReducer.top
     };
   }
 

@@ -1,13 +1,7 @@
-import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -15,66 +9,80 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import useStyles from './drawerStyle'
+import Button from "@material-ui/core/Button";
+import React from "react";
+import { createTheme, ThemeProvider  } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography';
 
 
-function PersistentDrawerRight() {
-
-  const dispatch = useDispatch();
+function Drawer() {
   const classes = useStyles();
-  const theme = useTheme();
+  const anchor = "right"
   
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.DrawerReducer)
   
-  const handleDrawerClose = () => {
-    dispatch({type: "CLOSE"});
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    dispatch({type: "TOGGLE", value: open, anchor})
   };
-  const open = useSelector(state => state.DrawerReducer.open)
+
+  const list = (anchor) => (
+    <div
+      className={clsx(classes.list, {
+        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+      })}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {['البريد الالكتروني', 'البريد الوارد', 'ارسل ايميل', 'المسودات'].map((text, index) => (
+          <ListItem   button key={text} className={classes.root} >
+            <ListItemText   disableTypography primary={<Typography type="body2" style={{float:"right", marginRight:"0.3em" }}>{text}</Typography>}   />
+            <ListItemIcon >{index % 2 === 0 ? <InboxIcon style={{paddingLeft:"0"}}/> : <MailIcon style={{paddingLeft:"0"}}/>}</ListItemIcon>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['جميع الرسائل', 'سلة المهملات', 'السبام'].map((text, index) => (
+          
+          <ListItem button key={text} className={classes.root}>
+            <ListItemText   disableTypography primary={<Typography type="body2" style={{float:"right", marginRight:"0.3em" }}>{text}</Typography>}   />
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon style={{paddingLeft:"0"}}/> : <MailIcon style={{paddingLeft:"0"}}/>}</ListItemIcon>
+          </ListItem>
+          
+        ))}
+      </List>
+    </div>
+  );
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      
-      
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="right"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
+    <div>
+        <SwipeableDrawer
+            anchor={anchor}
+            open={state[anchor]}
+            onClose={toggleDrawer(anchor, false)}
+            onOpen={toggleDrawer(anchor, true)}
+          >
+            {list(anchor)}
+        </SwipeableDrawer>
     </div>
   );
 }
 
+
 function mapStateToProps(state) {
     return {
-        open: state.DrawerReducer.open
+        top: state.DrawerReducer.top,
+        left: state.DrawerReducer.left,
+        bottom: state.DrawerReducer.bottom,
+        right: state.DrawerReducer.right
     };
   }
   
-  export default connect(mapStateToProps)(PersistentDrawerRight);
+  export default connect(mapStateToProps)(Drawer);

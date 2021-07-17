@@ -5,6 +5,9 @@ let useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  bar:{
+    background:"navy"
+  },
   menuButton: {
     marginLeft: theme.spacing(1),
   },

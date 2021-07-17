@@ -16,7 +16,6 @@ function parseJwt (token) {
 
 const TextTest = () => {
   const text = useSelector(state => state.Reducer2.text)
-  const [temp2, setTemp] = useState({})
   const [response, setResponse] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);

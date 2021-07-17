@@ -1,16 +1,16 @@
 const initialState = {
-  open: false,
+    top: false,
+    left: false,
+    bottom: false,
+    right: false
 };
 
 export default function AppBarReducer(state = initialState, action) {
   switch (action.type) {
-    case "OPEN":
+    case "TOGGLE":
       return {
-        open: true,
-      };
-    case "CLOSE":
-      return {
-        open: false,
+        ...state,
+        [action.anchor]: action.value
       };
     default:
       return state;
