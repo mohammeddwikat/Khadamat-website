@@ -19,7 +19,7 @@ const Counter = (props) => {
     <div>
      
       <div>
-        <h1>{name}</h1>
+        <h1>name: {name}</h1>
         <h2>{aga}</h2>
         <button onClick={decrement}>-</button>
         <span>{counter}</span>
