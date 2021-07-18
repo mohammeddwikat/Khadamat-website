@@ -1,4 +1,4 @@
-import { LoginForm, SignUpForm, ForgetForm, CodeForm } from "../components";
+import { LoginForm, SignUpForm, ForgetForm, CodeForm, ResetPasswordForm } from "../components";
 
 const EntrancePages = (props) => {
 
@@ -12,7 +12,11 @@ const EntrancePages = (props) => {
       }
       else if(props.typePage == 'code'){
         return <CodeForm/>
-      }else{
+      }
+      else if(props.typePage == 'reset'){
+        return <ResetPasswordForm/>
+      }
+      else{
         return <div>Error 404 <br/> not found</div>
       }
   }

@@ -91,6 +91,8 @@ const testingReact = () => {
           <Link to='/forgetPage'>to forget password</Link>
           <br></br>
           <Link to='/code'>to code</Link>
+          <br></br>
+          <Link to='/resetPassword'>to reset password</Link>
         </div>
         <TextTest></TextTest>
       </Provider>
@@ -106,7 +108,8 @@ function App() {
           <Route path='/signUp' component={()=> <EntrancePages typePage={"signUp"}/>} />
           <Route path='/loginPage' component={()=> <EntrancePages typePage={"login"}/>} /> 
           <Route path='/forgetPage' component={()=> <EntrancePages typePage={"forget"}/>} /> 
-          <Route path='/code' component={()=> <EntrancePages typePage={"code"}/>} />   
+          <Route path='/code' component={()=> <EntrancePages typePage={"code"}/>} /> 
+          <Route path='/resetPassword' component={()=> <EntrancePages typePage={"reset"}/>} />   
       </Switch>
     </Router>
   );
