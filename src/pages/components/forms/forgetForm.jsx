@@ -4,18 +4,17 @@ import TextField from "@material-ui/core/TextField";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { GeneralTextField, GeneralButton } from "../../../components";
 import {Link} from 'react-router-dom'
-import people from '../../../images/people.jpeg'
+import forget from '../../../images/forget.jpg'
 import Hidden from '@material-ui/core/Hidden';
 import EmailIcon from '@material-ui/icons/Email';
 import useStyles from './formsStyle'
 import axios from 'axios'
 
 
-const LoginForm = () => {
+const ForgetForm = () => {
 
   const classes = useStyles();
   let [values, setValues] = React.useState({
-    password: "",
     email: "",
   });
 
@@ -25,31 +24,20 @@ const LoginForm = () => {
 
   const submit = (event) => {
     event.preventDefault()
-    axios({
-      method: 'post',
-      url: 'https://dw.wadq.dev/login',
-      data: {
-        email: values.email,
-        password: values.password
-      }
-    }).then((response) => {
-      alert(response)
-    }, (err) => {
-      alert(err)
-    });
+   
   }
 
   return (
     <container className={classes.formContainer}>
       <Hidden only={['xs', 'sm']}>
-        <img className={classes.imageStyle} src={people} alt="people" width="500px" height="500px"/>
+        <img className={classes.imageStyle} src={forget} alt="people" width="500px" height="500px"/>
       </Hidden>
       <form className={classes.formStyle}>
         <h1 className={clsx(classes.textCenter, classes.uniformColor)}>
-          مرحبا بك في موقع خدمات
+          نسيت كلمة السر
         </h1>
         <h5 className={clsx(classes.textCenter, classes.uniformColor)}>
-          لتتمتع بميزات موقعنا قم بتسجيل الدخول الى موقعنا
+         ضع بريدك الالكتروني وسنرسل اليك رمز التحقق لاستعادتها
         </h5>
 
         <GeneralTextField
@@ -61,22 +49,12 @@ const LoginForm = () => {
           onChange={handleChange}
           icon={<EmailIcon className={classes.uniformColor} />}
         />
-        <GeneralTextField
-          data-cy={"password"}
-          label={"كلمة المرور"}
-          type={"password"}
-          id={"password"}
-          name={"password"}
-          onChange={handleChange}
-          icon={<VisibilityOff className={classes.uniformColor} />}
-        />
 
         <div className={clsx(classes.flexDisplay, classes.margin)}>
-          <GeneralButton title={"تسجيل دخول"} onClick={submit}/>
+          <GeneralButton title={" ارسال الرمز"} onClick={submit}/>
           <br/>
-          <Link className={clsx(classes.textCenter, classes.uniformColor, classes.linkStyle)}>هل نسيت كلمة المرور؟</Link>
-          <br/>
-          <Link to='/signUp' className={clsx(classes.textCenter, classes.uniformColor, classes.linkStyle)}>هل تريد ان تملك حسابا؟</Link>
+         
+          <Link to='/login' className={clsx(classes.textCenter, classes.uniformColor, classes.linkStyle)}>العوده الى تسجيل الدخول</Link>
         </div>
        
       </form>
@@ -85,4 +63,4 @@ const LoginForm = () => {
 };
 
 
-export default LoginForm; //connect(mapStateToProps)(form);
+export default ForgetForm; //connect(mapStateToProps)(form);

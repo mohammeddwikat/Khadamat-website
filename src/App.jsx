@@ -87,6 +87,10 @@ const testingReact = () => {
           <Link to='/loginPage'>to log in</Link>
           <br></br>
           <Link to='/signUp'>to sign up</Link>
+          <br></br>
+          <Link to='/forgetPage'>to forget password</Link>
+          <br></br>
+          <Link to='/code'>to code</Link>
         </div>
         <TextTest></TextTest>
       </Provider>
@@ -100,7 +104,9 @@ function App() {
       <Switch>
           <Route path='/' exact  component={testingReact} />
           <Route path='/signUp' component={()=> <EntrancePages typePage={"signUp"}/>} />
-          <Route path='/loginPage' component={()=> <EntrancePages typePage={"login"}/>} />   
+          <Route path='/loginPage' component={()=> <EntrancePages typePage={"login"}/>} /> 
+          <Route path='/forgetPage' component={()=> <EntrancePages typePage={"forget"}/>} /> 
+          <Route path='/code' component={()=> <EntrancePages typePage={"code"}/>} />   
       </Switch>
     </Router>
   );
