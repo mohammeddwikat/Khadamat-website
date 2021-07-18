@@ -22,7 +22,7 @@ const Counter = (props) => {
         <h1>Abdullah and Mohammad</h1>
         <h1>name: {name}</h1>
         <h2>{aga}</h2>
-        <button onClick={decrement}>-</button>
+        <button  onClick={decrement}>-</button>
         <span>{counter}</span>
         <button onClick={increment}>+</button>
       </div>

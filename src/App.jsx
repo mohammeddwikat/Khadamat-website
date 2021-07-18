@@ -7,6 +7,13 @@ import TextTest from './test'
 import { combineReducers } from 'redux';
 import {NavigationBar, Drawer} from './components'
 import rootReducers from './components/Reducers'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import {EntrancePages} from './pages'
 
 const cc = () => <div>
 <h1>as;dmas</h1>
@@ -67,11 +74,9 @@ const rootReducer = combineReducers({Reducer, Reducer2 })
 const store = createStore(rootReducer)
 const storeNavDrawer = createStore(rootReducers)
 
-
-function App() {
+const testingReact = () => { 
   return (
     <div>
-
       <Provider store={store}>
         <Provider store = {storeNavDrawer}>
           <NavigationBar></NavigationBar>
@@ -79,10 +84,25 @@ function App() {
         </Provider>
         <div className="App">
           <Counter gg="mohammed"></Counter>
+          <Link to='/loginPage'>to log in</Link>
+          <br></br>
+          <Link to='/signUp'>to sign up</Link>
         </div>
         <TextTest></TextTest>
       </Provider>
     </div>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+          <Route path='/' exact  component={testingReact} />
+          <Route path='/signUp' component={()=> <EntrancePages typePage={"signUp"}/>} />
+          <Route path='/loginPage' component={()=> <EntrancePages typePage={"login"}/>} />   
+      </Switch>
+    </Router>
   );
 }
 
