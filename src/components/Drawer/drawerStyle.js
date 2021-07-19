@@ -5,7 +5,7 @@ let useStyles = makeStyles((theme) => ({
       width: 250,
     },
     fullList: {
-      width: 'auto',
+      width: '90vw',
     },
     root:{
       flexDirection:"flex-start",

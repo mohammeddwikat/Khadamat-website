@@ -1,13 +1,11 @@
 import React from "react";
 import clsx from "clsx";
-import TextField from "@material-ui/core/TextField";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { GeneralTextField, GeneralButton } from "../../../components";
 import {Link} from 'react-router-dom'
 import code from '../../../images/code.jpg'
 import Hidden from '@material-ui/core/Hidden';
 import useStyles from './formsStyle'
-import axios from 'axios'
+// import axios from 'axios'
 
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 

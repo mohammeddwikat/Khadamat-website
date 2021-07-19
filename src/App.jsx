@@ -7,13 +7,16 @@ import TextTest from './test'
 import { combineReducers } from 'redux';
 import {NavigationBar, Drawer} from './components'
 import rootReducers from './components/Reducers'
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  
 } from "react-router-dom";
-import {EntrancePages} from './pages'
+
+import {EntrancePages, WelcomePage} from './pages'
 
 const cc = () => <div>
 <h1>as;dmas</h1>
@@ -74,43 +77,52 @@ const rootReducer = combineReducers({Reducer, Reducer2 })
 const store = createStore(rootReducer)
 const storeNavDrawer = createStore(rootReducers)
 
-const testingReact = () => { 
+const TestingReact = (props) => { 
+
   return (
     <div>
       <Provider store={store}>
-        <Provider store = {storeNavDrawer}>
-          <NavigationBar></NavigationBar>
-          <Drawer></Drawer>
-        </Provider>
+        
         <div className="App">
           <Counter gg="mohammed"></Counter>
-          <Link to='/loginPage'>to log in</Link>
+          <Link to='/page/login'>to log in</Link>
           <br></br>
-          <Link to='/signUp'>to sign up</Link>
+          <Link to='/page/signUp'>to sign up</Link>
           <br></br>
-          <Link to='/forgetPage'>to forget password</Link>
+          <Link to='/page/forget'>to forget password</Link>
           <br></br>
-          <Link to='/code'>to code</Link>
+          <Link to='/page/code'>to code</Link>
           <br></br>
-          <Link to='/resetPassword'>to reset password</Link>
+          <Link to='/page/reset'>to reset password</Link>
         </div>
         <TextTest></TextTest>
+      
       </Provider>
     </div>
   )
 }
 
+
 function App() {
-  const id = 12
+
   return (
+    
     <Router>
       <Switch>
-          <Route path='/' exact  component={testingReact} />
-          <Route path='/signUp' component={()=> <EntrancePages typePage={"signUp"}/>} />
+          <Route path='/' exact  component={()=>(
+          <div >
+            <WelcomePage/>
+            <TestingReact/>
+          </div>)} />
+          <Route path='/page/:form' component={({match})=> <EntrancePages typePage={match.params.form}/>} />
+          {/* <Route path='/signUp' component={()=> <EntrancePages typePage={"signUp"}/>} />
           <Route path='/loginPage' component={()=> <EntrancePages typePage={"login"}/>} /> 
           <Route path='/forgetPage' component={()=> <EntrancePages typePage={"forget"}/>} /> 
           <Route path='/code' component={()=> <EntrancePages typePage={"code"}/>} /> 
-          <Route path='/resetPassword' component={()=> <EntrancePages typePage={"reset"}/>} />   
+          <Route path='/resetPassword' component={()=> <EntrancePages typePage={"reset"}/>} />  */}
+          {/* <Route path='/child/:id' component={({match}) => (
+            <div>asdasdaaaaaaaasd{match.params.id}</div>
+          )}/>   */}
       </Switch>
     </Router>
   );

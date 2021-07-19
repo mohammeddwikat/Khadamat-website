@@ -9,11 +9,8 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import useStyles from './drawerStyle'
-import Button from "@material-ui/core/Button";
-import React from "react";
-import { createTheme, ThemeProvider  } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography';
-
+import {Link} from 'react-router-dom'
 
 function Drawer() {
   const classes = useStyles();
@@ -40,15 +37,27 @@ function Drawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['البريد الالكتروني', 'البريد الوارد', 'ارسل ايميل', 'المسودات'].map((text, index) => (
+        {/* {['البريد الالكتروني', 'البريد الوارد', 'ارسل ايميل', 'المسودات'].map((text, index) => (
           <ListItem   button key={text} className={classes.root} >
             <ListItemText   disableTypography primary={<Typography type="body2" style={{float:"right", marginRight:"0.3em" }}>{text}</Typography>}   />
             <ListItemIcon >{index % 2 === 0 ? <InboxIcon style={{paddingLeft:"0"}}/> : <MailIcon style={{paddingLeft:"0"}}/>}</ListItemIcon>
           </ListItem>
-        ))}
+        ))} */}
+         <ListItem   button key={"test1"} className={classes.root} >
+            <ListItemText   disableTypography primary={<Typography type="body2" style={{float:"right", marginRight:"0.3em" }}><Link to='/'>{"الصفحة البداية"}</Link></Typography>}   />
+            <ListItemIcon > <InboxIcon style={{paddingLeft:"0"}}/> </ListItemIcon>
+          </ListItem>
+        <ListItem   button key={"test2"} className={classes.root} >
+            <ListItemText   disableTypography primary={<Typography type="body2" style={{float:"right", marginRight:"0.3em" }}><Link to='/page/login'>{"تسجيل الدخول"}</Link></Typography>}   />
+            <ListItemIcon > <InboxIcon style={{paddingLeft:"0"}}/> </ListItemIcon>
+          </ListItem>
+          <ListItem   button key={"test3"} className={classes.root} >
+            <ListItemText   disableTypography primary={<Typography type="body2" style={{float:"right", marginRight:"0.3em" }}><Link to='/page/signUp'>{"الانضمام الى خدمات"}</Link></Typography>}   />
+            <ListItemIcon > <InboxIcon style={{paddingLeft:"0"}}/> </ListItemIcon>
+          </ListItem>
       </List>
       <Divider />
-      <List>
+      {/* <List>
         {['جميع الرسائل', 'سلة المهملات', 'السبام'].map((text, index) => (
           
           <ListItem button key={text} className={classes.root}>
@@ -57,7 +66,7 @@ function Drawer() {
           </ListItem>
           
         ))}
-      </List>
+      </List> */}
     </div>
   );
 

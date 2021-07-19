@@ -1,14 +1,12 @@
 import React from "react";
 import clsx from "clsx";
-import TextField from "@material-ui/core/TextField";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { GeneralTextField, GeneralButton } from "../../../components";
 import {Link} from 'react-router-dom'
 import forget from '../../../images/forget.jpg'
 import Hidden from '@material-ui/core/Hidden';
 import EmailIcon from '@material-ui/icons/Email';
 import useStyles from './formsStyle'
-import axios from 'axios'
+// import axios from 'axios'
 
 
 const ForgetForm = () => {

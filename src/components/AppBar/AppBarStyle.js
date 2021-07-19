@@ -3,15 +3,25 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 
 let useStyles = makeStyles((theme) => ({
   grow: {
-    flexGrow: 1,
+   
+    flexGrow:"1",
+    '& PrivateSwipeArea-anchorRight-23':{
+      width:"0!important"
+    }
   },
   bar:{
-    background:"#0077b6"
+    background:"#0077b6",
+    position:"fixed",
+    width:"100%",
+    zIndex: theme.zIndex+1
+    
   },
   menuButton: {
     marginLeft: theme.spacing(1),
+    
   },
   title: {
+    
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',

@@ -146,7 +146,7 @@ function NavigationBar() {
             
             
           </div>
-          <div className={classes.grow} />
+          <div  className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

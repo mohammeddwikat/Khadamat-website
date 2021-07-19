@@ -1,40 +1,54 @@
 import { LoginForm, SignUpForm, ForgetForm, CodeForm, ResetPasswordForm } from "../components";
+import {NavigationBar, Drawer} from '../../components'
+import { Provider } from 'react-redux';
+import rootReducers from '../../components/Reducers'
+import { createStore } from 'redux';
 
 const EntrancePages = (props) => {
 
   const getForm = () => {
-      if(props.typePage == 'login'){
+      if(props.typePage === 'login'){
           return <LoginForm/>
-      }else if(props.typePage == 'signUp'){
+      }else if(props.typePage === 'signUp'){
         return <SignUpForm/>
-      }else if(props.typePage == 'forget'){
+      }else if(props.typePage === 'forget'){
           return <ForgetForm/>
       }
-      else if(props.typePage == 'code'){
+      else if(props.typePage === 'code'){
         return <CodeForm/>
       }
-      else if(props.typePage == 'reset'){
+      else if(props.typePage === 'reset'){
         return <ResetPasswordForm/>
       }
       else{
-        return <div>Error 404 <br/> not found</div>
+        return <div>Error 404 <br/> not found {props.typePag}</div>
       }
   }
+  
+  const storeNavDrawer = createStore(rootReducers)
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >   
- 
-      {
-          getForm()
-      }
+    <div>
+      <Provider store = {storeNavDrawer}>
+          <NavigationBar></NavigationBar>
+          <Drawer></Drawer>
+          
+      </Provider>
+    
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >   
+
+        {
+            getForm()
+        }
+      </div>
     </div>
   );
 };
