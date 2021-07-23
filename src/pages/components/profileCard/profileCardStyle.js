@@ -13,14 +13,11 @@ let useStyle = makeStyles((theme) => ({
     boxShadow:"0px 0px 5px 2px gray",
   },
   avatar:{
-    width: "220px",
-    height: "220px",
+    width: "220px!important",
+    height: "220px!important",
     marginBottom:"10px",
     border:"10px solid white",
-    '& .MuiAvatar-root':{
-      width: "220px",
-      height: "220px",
-    }
+    
   },
   coverCard:{
       position:"absolute",
