@@ -1,7 +1,7 @@
 const initialState = {
-    status:"default",
+    status:"",
     open: false,
-    text:"default"
+    text:""
 };
 
 export default function SnackBarReducer(state = initialState, action) {

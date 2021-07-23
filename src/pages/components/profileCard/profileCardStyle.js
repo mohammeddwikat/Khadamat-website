@@ -13,8 +13,8 @@ let useStyle = makeStyles((theme) => ({
     boxShadow:"0px 0px 5px 2px gray",
   },
   avatar:{
-    width: theme.spacing(25),
-    height: theme.spacing(25),
+    width: "220px",
+    height: "220px",
     marginBottom:"10px",
     border:"10px solid white"
   },
