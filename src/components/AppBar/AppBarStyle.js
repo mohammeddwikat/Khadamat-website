@@ -7,13 +7,14 @@ let useStyles = makeStyles((theme) => ({
     flexGrow:"1",
     '& PrivateSwipeArea-anchorRight-23':{
       width:"0!important"
-    }
+    },
   },
   bar:{
     background:"#0077b6",
     position:"fixed",
     width:"100%",
-    zIndex: theme.zIndex+1
+    zIndex: theme.zIndex+1,
+    
     
   },
   menuButton: {

@@ -15,7 +15,7 @@ let useStyles = makeStyles((theme) => ({
       right: 0,
     },
     "& .MuiInputBase-root":{
-        width:"87%",
+        width:"70%",
         paddingRight:"0px!important"
     },
     "& .MuiInputLabel-shrink": {
@@ -33,7 +33,7 @@ let useStyles = makeStyles((theme) => ({
   gridStyle: {
     flexWrap: "nowrap",
     justifyContent: "center",
-    width: "90%",
+    width: "75%",
     
   },
   uniformColor: {

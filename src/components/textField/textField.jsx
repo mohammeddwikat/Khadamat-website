@@ -15,6 +15,7 @@ const GeneralTextField = (props) => {
       >
         <Grid item>
           <TextField
+            autoComplete={"off"}
             type={props.type}
             id={props.id}
             name={props.id}

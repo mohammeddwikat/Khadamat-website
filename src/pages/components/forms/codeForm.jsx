@@ -24,11 +24,13 @@ const CodeForm = () => {
     event.preventDefault()
    
   }
+  const width = window.innerWidth
+  const height = window.innerHeight
 
   return (
     <container className={classes.formContainer}>
       <Hidden only={['xs', 'sm']}>
-        <img className={classes.imageStyle} src={code} alt="people" width="500px" height="500px"/>
+        <img className={classes.imageStyle} src={code} alt="people" width={width/5} height={height/2.5}/>
       </Hidden>
       <form className={classes.formStyle}>
         <h1 className={clsx(classes.textCenter, classes.uniformColor)}>

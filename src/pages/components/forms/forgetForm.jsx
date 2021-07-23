@@ -52,7 +52,7 @@ const ForgetForm = () => {
           <GeneralButton title={" ارسال الرمز"} onClick={submit}/>
           <br/>
          
-          <Link to='/login' className={clsx(classes.textCenter, classes.uniformColor, classes.linkStyle)}>العوده الى تسجيل الدخول</Link>
+          <Link to='/page/login' className={clsx(classes.textCenter, classes.uniformColor, classes.linkStyle)}>العوده الى تسجيل الدخول</Link>
         </div>
        
       </form>

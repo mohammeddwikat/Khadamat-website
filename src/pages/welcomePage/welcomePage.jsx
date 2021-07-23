@@ -1,7 +1,7 @@
 import {WelcomeSection} from "../components";
 import {NavigationBar, Drawer} from '../../components'
 import { Provider } from 'react-redux';
-import rootReducers from '../../components/Reducers'
+import {rootReducers} from '../../components/Reducers'
 import { createStore } from 'redux';
 
 const storeNavDrawer = createStore(rootReducers)

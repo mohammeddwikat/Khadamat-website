@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import clsx from "clsx";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { GeneralTextField, GeneralButton, DropDownListFilter } from "../../../components";
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import EmailIcon from '@material-ui/icons/Email';
 import useStyles from './formsStyle'
 import axios from 'axios'
@@ -11,6 +11,7 @@ import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
 
 const SignUpForm = () => {
   const classes = useStyles();
+  const history = useHistory()
   let [values, setValues] = React.useState({
     password: "",
     email: "",
@@ -27,39 +28,47 @@ const SignUpForm = () => {
 
   const submit = (event) => {
     event.preventDefault()
-
-    axios({
-      method: 'post',
-      url:'https://k.wadq.dev/signup',
-      data:{
-        email: values.email,
-        password: values.password,
-        location: values.location,
-        profileType: "client",
-        phonenumber: values.phoneNumber,
-        username: values.firstName + values.lastName
+    let formData = new FormData();
+    formData.append("email", values.email);
+    formData.append("password", values.password);
+    formData.append("location", values.location);
+    formData.append("profileType","client");
+    formData.append("phonenumber", values.phonenumber);
+    formData.append("username", values.firstName + " " + values.lastName);
+    axios.post('https://k.wadq.dev/signup', formData).then(
+      res => {
+        history.push("/page/login")
       },
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-      },
-      proxy: {
-        host: '104.236.174.88',
-        port: 3128
+      err => {
+        alert(err)
       }
-      
-     }
-    ).then((response) => {
-      alert(response)
-    }, (err) => {
-      console.log(err)
-    });
+    );
+  //   axios.post('https://k.wadq.dev/signup', {
+  //   "username":"teiist",
+  //   "email" : "efgff@e",
+  //   "password":"tess",
+  //   "location" : "",
+  //   "phonenumber" : "0597",
+  //   "profileType" : "m"
+  // })
+  // .then(function (response) {
+  //   console.log(response.data);
+  // })
+  // .catch(function (error) {
+  //   console.log(error);
+  // });
   }
+  useEffect (()=>{
+    if(sessionStorage.getItem('userData') != undefined){
+      history.push('/profile/'+JSON.parse(sessionStorage.getItem('userData')).id)
+    }
+  }, []);
 
+  const height = window.innerHeight
   return (
-    <div className={classes.formContainer}>
+    <div className={classes.formContainerSignUp} style={{marginTop:"70px"}}>
     
-      <form className={classes.formStyle}>
+      <form className={classes.formStyle} >
         <h1 className={clsx(classes.textCenter, classes.uniformColor)}>
           مرحبا بك في موقع خدمات
         </h1>
@@ -86,7 +95,7 @@ const SignUpForm = () => {
             onChange={handleChange}
             icon={<AccountCircle className={classes.uniformColor} />}
           />
-          <DropDownListFilter/>
+          <DropDownListFilter onChange={(event)=> alert(event.target.value)}/>
           <GeneralTextField
             data-cy={"phoneNumber"}
             label={"رقم الهاتف"}

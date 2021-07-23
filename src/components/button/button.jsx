@@ -4,8 +4,9 @@ import useStyles from './buttonStyle'
 const GeneralButton = (props) => {
   const classes = useStyles()
   return (
-    <Button className={classes.uniformColorBackground} variant="contained" onClick={props.onClick}>
+    <Button style={props.newStyle} variant="contained" component="label" className={classes.uniformColorBackground}  onClick={props.onClick}>
       {props.title}
+      {props.upload}
     </Button>
   );
 };

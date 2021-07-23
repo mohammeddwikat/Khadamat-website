@@ -2,7 +2,7 @@ import { connect, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-const url = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJwaG9uZSI6IjA1OTkxNDkyNyIsIlNTTiI6IjA1OTkxNDkyNyIsImV4cGlyYXRpb25UaW1lIjozMDAwMDAwMDAwMDAwMDB9.gJys88xiZR6_Q_z0t6m9kIMweb6gxkoQ9UnrjEoaChA"
+const url = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVmZ2ZmQGUiLCJpYXQiOjE2MjY3MTg5NDcsImV4cCI6MTYyNjczMzM0N30.iwHlGZPZc3xtrI7z0158mYiW29cHOdvgOqpMfiD3lvU"
 
 function parseJwt (token) {
   var base64Url = token.split('.')[1];
@@ -21,9 +21,6 @@ const TextTest = () => {
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
-    
-
-
     console.log(parseJwt(url))
     axios.get('https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=5d9b8825bc3157243a97a507eb61ecc6')
     .then((res) => {

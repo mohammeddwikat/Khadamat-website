@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import TextTest from './test'
 import { combineReducers } from 'redux';
 import {NavigationBar, Drawer} from './components'
-import rootReducers from './components/Reducers'
+import {rootReducers} from './components/Reducers'
 
 import {
   BrowserRouter as Router,
@@ -16,7 +16,7 @@ import {
   
 } from "react-router-dom";
 
-import {EntrancePages, WelcomePage} from './pages'
+import {EntrancePages, WelcomePage, ProfilePageFreelancer} from './pages'
 
 const cc = () => <div>
 <h1>as;dmas</h1>
@@ -111,15 +111,16 @@ function App() {
       <Switch>
           <Route path='/' exact  component={()=>(
           <div >
+            <Provider store={storeNavDrawer}>
+        <NavigationBar></NavigationBar>
+        <Drawer></Drawer>
+      </Provider>
             <WelcomePage/>
             <TestingReact/>
+            
           </div>)} />
           <Route path='/page/:form' component={({match})=> <EntrancePages typePage={match.params.form}/>} />
-          {/* <Route path='/signUp' component={()=> <EntrancePages typePage={"signUp"}/>} />
-          <Route path='/loginPage' component={()=> <EntrancePages typePage={"login"}/>} /> 
-          <Route path='/forgetPage' component={()=> <EntrancePages typePage={"forget"}/>} /> 
-          <Route path='/code' component={()=> <EntrancePages typePage={"code"}/>} /> 
-          <Route path='/resetPassword' component={()=> <EntrancePages typePage={"reset"}/>} />  */}
+          <Route path='/profile/:id' component={({match}) => <ProfilePageFreelancer id={match.params.id}/>}/>
           {/* <Route path='/child/:id' component={({match}) => (
             <div>asdasdaaaaaaaasd{match.params.id}</div>
           )}/>   */}

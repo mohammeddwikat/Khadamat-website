@@ -1,26 +1,28 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import useStyles from './AppBarStyle'
-import { connect, useDispatch } from 'react-redux';
+import React from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import InputBase from "@material-ui/core/InputBase";
+import Badge from "@material-ui/core/Badge";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MailIcon from "@material-ui/icons/Mail";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import useStyles from "./AppBarStyle";
+import { connect, useDispatch } from "react-redux";
+import { GeneralButton } from "../";
+import { useHistory } from "react-router-dom";
 
 function NavigationBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const history = useHistory();
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const anchor = "right";
@@ -42,21 +44,24 @@ function NavigationBar() {
   };
 
   const dispatch = useDispatch();
-  
+
   const handleDrawerOpen = () => {
-    dispatch({type: "TOGGLE", value: true, anchor});
+    dispatch({ type: "TOGGLE", value: true, anchor });
+  };
+  const buttonStyle = {
+    background: "white",
+    color: "gray",
+    
   };
 
-  
-
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+      anchorOrigin={{ vertical: "top", horizontal: "left" }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+      transformOrigin={{ vertical: "top", horizontal: "left" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
@@ -65,14 +70,41 @@ function NavigationBar() {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
+  const mobileMenuId = "primary-search-account-menu-mobile";
+  const menuMobileNotLogged = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+      anchorOrigin={{ vertical: "top", horizontal: "left" }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+      transformOrigin={{ vertical: "top", horizontal: "left" }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem >
+        <GeneralButton
+          newStyle={buttonStyle}
+          title={"تسجيل الدخول"}
+          onClick={() => history.push("/page/login")}
+        />
+      </MenuItem>
+      <MenuItem>
+        <GeneralButton
+          newStyle={buttonStyle}
+          title={"الانضمام الى خدمات"}
+          onClick={() => history.push("/page/signUp")}
+        />
+      </MenuItem>
+    </Menu>
+  );
+  const renderMobileMenu = (
+    sessionStorage.getItem('userData') == undefined? menuMobileNotLogged :
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "left" }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "left" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
@@ -85,7 +117,11 @@ function NavigationBar() {
         <p>رسائل</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton aria-label="show new notifications" color="inherit" aria-haspopup="true">
+        <IconButton
+          aria-label="show new notifications"
+          color="inherit"
+          aria-haspopup="true"
+        >
           <Badge badgeContent={11} color="secondary">
             <NotificationsIcon />
           </Badge>
@@ -99,18 +135,32 @@ function NavigationBar() {
           aria-haspopup="true"
           color="inherit"
         >
-        <AccountCircle />
+          <AccountCircle />
         </IconButton>
         <p>صفحتك الشخصية</p>
       </MenuItem>
     </Menu>
   );
+    
+  const renderNotLogged = (
+    <div className={classes.sectionDesktop}>
+      <GeneralButton
+        newStyle={buttonStyle}
+        title={"تسجيل الدخول"}
+        onClick={() => history.push("/page/login")}
+      />
+      <GeneralButton
+        newStyle={buttonStyle}
+        title={"الانضمام الى خدمات"}
+        onClick={() => history.push("/page/signUp")}
+      />
+    </div>
+  );
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" className={classes.bar}>
+      <AppBar position="sticky" className={classes.bar}>
         <Toolbar>
-          
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
@@ -122,31 +172,42 @@ function NavigationBar() {
               <MoreIcon />
             </IconButton>
           </div>
-          <div className={classes.sectionDesktop}>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-            <AccountCircle />
-            </IconButton>
-            <IconButton aria-label="show new notifications" color="inherit" onClick={handleProfileMenuOpen}>
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show new mails" color="inherit" onClick={handleProfileMenuOpen}>
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            
-            
-          </div>
-          <div  className={classes.grow} />
+          {sessionStorage.getItem("userData") == undefined ? (
+            renderNotLogged
+          ) : (
+            <div className={classes.sectionDesktop}>
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <IconButton
+                aria-label="show new notifications"
+                color="inherit"
+                onClick={handleProfileMenuOpen}
+              >
+                <Badge badgeContent={17} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton
+                aria-label="show new mails"
+                color="inherit"
+                onClick={handleProfileMenuOpen}
+              >
+                <Badge badgeContent={4} color="secondary">
+                  <MailIcon />
+                </Badge>
+              </IconButton>
+            </div>
+          )}
+
+          <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -157,7 +218,7 @@ function NavigationBar() {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ 'aria-label': 'search' }}
+              inputProps={{ "aria-label": "search" }}
             />
           </div>
           <Typography className={classes.title} variant="h6" noWrap>
@@ -168,7 +229,7 @@ function NavigationBar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-            onClick ={handleDrawerOpen}
+            onClick={handleDrawerOpen}
           >
             <MenuIcon />
           </IconButton>
@@ -181,13 +242,12 @@ function NavigationBar() {
 }
 
 function mapStateToProps(state) {
-    return {
-        right: state.AppBarReducer.right,
-        left: state.AppBarReducer.left,
-        bottom: state.AppBarReducer.bottom,
-        top: state.AppBarReducer.top
-    };
-  }
+  return {
+    right: state.AppBarReducer.right,
+    left: state.AppBarReducer.left,
+    bottom: state.AppBarReducer.bottom,
+    top: state.AppBarReducer.top,
+  };
+}
 
 export default connect(mapStateToProps)(NavigationBar);
-

@@ -6,6 +6,9 @@ import ResetPasswordForm from './forms/resetPasswordForm'
 import SVGCurve from './curve/curve'
 import ColoredCover from './coloredCover/coloredCover'
 import WelcomeSection from './welcomeSection/welcomeSection'
+import ProfileCard from './profileCard/profileCard'
+import InfoCard from './infoCard/infoCard'
+import SkillsCard from './skillsCard/skillsCard'
 
 export {
     LoginForm,
@@ -15,5 +18,8 @@ export {
     ResetPasswordForm,
     SVGCurve,
     ColoredCover,
-    WelcomeSection
+    WelcomeSection,
+    ProfileCard,
+    InfoCard,
+    SkillsCard
 }

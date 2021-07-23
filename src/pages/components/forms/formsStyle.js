@@ -18,11 +18,17 @@ let useStyles = makeStyles((theme) => ({
     boxShadow:"0px 0px 15px 5px #0077b6",
     borderRadius:"2%",
   },
+  formContainerSignUp: {
+    marginTop:"10vh",
+    boxShadow:"0px 0px 15px 5px #0077b6",
+    borderRadius:"2%",
+  },
  
   flexDisplay: {
     display: "flex",
     flexDirection:"column",
     justifyContent: "center",
+    alignItems: "center",
   },
  
   textCenter: {

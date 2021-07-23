@@ -13,7 +13,7 @@ const filterOptions = createFilterOptions({
   stringify: (option) => option.title,
 });
 
-export default function DropDownListFilter() {
+export default function DropDownListFilter(props) {
     const classes = useStyles()
   return (
     <Autocomplete
@@ -22,7 +22,7 @@ export default function DropDownListFilter() {
       getOptionLabel={(option) => option.title}
       filterOptions={filterOptions}
       sx={{ width: 300 }}
-      
+      onChange={props.onChange}
       renderInput={(params) => (
         <div className={classes.margin}>
           <Grid className={classes.gridStyle} container spacing={1} alignItems="flex-end">
