@@ -16,7 +16,11 @@ let useStyle = makeStyles((theme) => ({
     width: "220px",
     height: "220px",
     marginBottom:"10px",
-    border:"10px solid white"
+    border:"10px solid white",
+    '& .MuiAvatar-root':{
+      width: "220px",
+      height: "220px",
+    }
   },
   coverCard:{
       position:"absolute",
