@@ -72,7 +72,7 @@ const ProfileCard = (props) => {
       <h2 style={{ marginBottom: "0" }}>
         {JSON.parse(sessionStorage.getItem("userData")).name}
       </h2>
-      <h3>نابلس</h3>
+      <h3>{JSON.parse(sessionStorage.getItem("userData")).location}</h3>
       <GeneralButton
         onClick={() => inputFile.current.click()}
         title={"تغيير الصورة الشخصية"}

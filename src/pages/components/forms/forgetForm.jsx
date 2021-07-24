@@ -6,6 +6,7 @@ import forget from '../../../images/forget.jpg'
 import Hidden from '@material-ui/core/Hidden';
 import EmailIcon from '@material-ui/icons/Email';
 import useStyles from './formsStyle'
+import axios from "axios";
 // import axios from 'axios'
 
 
@@ -22,7 +23,17 @@ const ForgetForm = () => {
 
   const submit = (event) => {
     event.preventDefault()
-   
+    axios({
+      method:"POST",
+      url:"https://K.wadq.dev/sendRestPassword",
+      data:{
+        email: values.email
+      }
+    }).then((response) => {
+      alert("sent")
+    }, (error) => {
+      alert(error)
+    })
   }
 
   return (
@@ -35,7 +46,7 @@ const ForgetForm = () => {
           نسيت كلمة السر
         </h1>
         <h5 className={clsx(classes.textCenter, classes.uniformColor)}>
-         ضع بريدك الالكتروني وسنرسل اليك رمز التحقق لاستعادتها
+         ضع بريدك الالكتروني وسنرسل اليك رابط لاستعادتها
         </h5>
 
         <GeneralTextField

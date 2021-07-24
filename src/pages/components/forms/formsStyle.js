@@ -51,7 +51,50 @@ let useStyles = makeStyles((theme) => ({
   imageStyle:{
     borderRadius:"1%",
     borderTopRightRadius:"35%"
-  }
+  },
+  rtlDirection: {
+    direction: "rtl",
+    marginRight: theme.spacing(0.5),
+  },
+  fromAddSkills: {
+    display: "flex",
+    marginLeft: theme.spacing(2),
+  },
+  newInputStyle: {
+    "& .MuiInputBase-root": {
+      width: "100%!important",
+      paddingRight: "0px!important",
+    },
+  },
+  newGridStyle: {
+    width: "100%!important",
+  },
+  fromAddSkillsFields: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
+    width: "100%",
+  },
+  skills: {
+    boxShadow: "0px 0px 3px 2px gray",
+    width: "100%",
+    display: "flex",
+    justifyContent:"flex-start",
+    alignItems:'flex-center',
+    flexWrap: "wrap",
+    
+  },
+  nothingTitle: {
+    alignSelf: "center",
+    width: "100%",
+    textAlign: "center",
+  },
+  chipStyle:{
+    margin:theme.spacing(1),
+    flexDirection:"row-reverse!important",
+    backgroundColor:"#0077bB",
+    color:'white'
+  },
  
 }));
 

@@ -54,7 +54,16 @@ const LoginForm = () => {
 
   useEffect (()=>{
     if(sessionStorage.getItem('userData') != undefined){
-      history.push('/profile/'+JSON.parse(sessionStorage.getItem('userData')).id)
+      if(JSON.parse(sessionStorage.getItem('userData')).profileType === 'F'){
+        history.push('/profile/'+JSON.parse(sessionStorage.getItem('userData')).id)
+      }else if(JSON.parse(sessionStorage.getItem('userData')).profileType === 'P'){
+        history.push('/productOwner/'+JSON.parse(sessionStorage.getItem('userData')).id)
+      }else if(JSON.parse(sessionStorage.getItem('userData')).profileType === 'A'){
+        history.push('/admin/'+JSON.parse(sessionStorage.getItem('userData')).id)
+      }else{
+        history.push("/page/login")
+      }
+      
     }
   }, []);
 

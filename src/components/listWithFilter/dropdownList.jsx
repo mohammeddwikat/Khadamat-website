@@ -5,36 +5,64 @@ import Autocomplete, {
   createFilterOptions,
 } from "@material-ui/lab/Autocomplete";
 import Grid from "@material-ui/core/Grid";
-import HomeIcon from '@material-ui/icons/Home';
 import useStyles from './dropDownStyle'
+import clsx from "clsx"
+
+const filter = createFilterOptions();
 
 const filterOptions = createFilterOptions({
   matchFrom: "start",
   stringify: (option) => option.title,
 });
 
+
 export default function DropDownListFilter(props) {
     const classes = useStyles()
+
   return (
     <Autocomplete
-      id="filter-demo"
-      options={cities}
-      getOptionLabel={(option) => option.title}
-      filterOptions={filterOptions}
+      value={props.value}
+      freeSolo={props.freeSolo}
+      id={props.id}
+      options={props.titles}
+      getOptionLabel={(option) => {
+        if (typeof option === "string") {
+          return option;
+        }
+        if (option.value) {
+          return option.title;
+        }
+        return option.title;
+      }}
+      renderOption={(option) => option.title}
+      filterOptions={(options, params) => {
+      const filtered = filter(options, params);
+
+        if (params.inputValue !== '' && props.freeSolo == true) {
+          filtered.push({
+            value: params.inputValue,
+            title: params.inputValue,
+          });
+        }
+
+        return filtered;
+      }}
       sx={{ width: 300 }}
       onChange={props.onChange}
       renderInput={(params) => (
         <div className={classes.margin}>
-          <Grid className={classes.gridStyle} container spacing={1} alignItems="flex-end">
+          <Grid className={clsx(classes.gridStyle, props.newGridStyle)} container spacing={1} alignItems="flex-end">
           
             <Grid item>
               <TextField
               
-              className={classes.inputStyle}
+              className={clsx(classes.inputStyle, props.newInputStyle)}
                 style={{ width: "25ch" }}
                 {...params}
-                id="input-with-icon-grid"
-                label="المدينة السكنية"
+                id={props.idField}
+                label={props.label}
+                data-cy={props.dataCy}
+                
                 InputProps={{
                   ...params.InputProps,
                   endAdornment: <span ></span>
@@ -43,7 +71,7 @@ export default function DropDownListFilter(props) {
               />
             </Grid>
             <Grid item>
-              <HomeIcon className={classes.uniformColor} />
+              {props.iconField}
             </Grid>
           </Grid>
         </div>
@@ -52,14 +80,3 @@ export default function DropDownListFilter(props) {
   );
 }
 
-const cities = [
-  { title: "نابلس"},
-  { title: "رام الله"},
-  { title: "سلفيت"},
-  { title: "اريحا"},
-  { title: "جنين" },
-  { title: "القدس" },
-  { title: "طول كرم" },
-  { title: "غزة" },
- 
-];

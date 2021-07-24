@@ -76,10 +76,11 @@ function Drawer() {
               ["/", "/page/login", "/page/signUp"]
             )
           : drawerItems(
-              ["صفحتي الشخصية", "صفحة الرئيسية", "مشاريعي", "طلباتي","تسجيل خروج"],
+              ["صفحتي الشخصية", "صفحة الرئيسية", "اضافة مهارات", "مشاريعي", "طلباتي","تسجيل خروج"],
               [
                 "/profile/" + JSON.parse(sessionStorage.getItem("userData")).id,
                 "/",
+                "/freeLancer/addSkills/"+JSON.parse(sessionStorage.getItem("userData")).id,
                 "/page/login",
                 "/page/signUp",
                 "/"

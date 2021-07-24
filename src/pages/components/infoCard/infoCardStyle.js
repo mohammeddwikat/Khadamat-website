@@ -9,7 +9,11 @@ let useStyle = makeStyles((theme) => ({
     flexDirection:"column",
     boxShadow:"0px 0px 5px 2px gray",
     direction:"rtl",
-    justifyContent:"space-between"
+    justifyContent:"flex-start",
+    '& > div':{
+      margin:"8px",
+      fontWeight:"bold"
+    }
   },
   
 }));

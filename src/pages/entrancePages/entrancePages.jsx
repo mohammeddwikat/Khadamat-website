@@ -21,7 +21,7 @@ const EntrancePages = (props) => {
         return <ResetPasswordForm/>
       }
       else{
-        return <div>Error 404 <br/> not found {props.typePag}</div>
+        return <div>Error 404 <br/> not found</div>
       }
   }
   

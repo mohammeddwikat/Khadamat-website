@@ -9,6 +9,7 @@ import WelcomeSection from './welcomeSection/welcomeSection'
 import ProfileCard from './profileCard/profileCard'
 import InfoCard from './infoCard/infoCard'
 import SkillsCard from './skillsCard/skillsCard'
+import AddSkillsForm from './forms/addSkills'
 
 export {
     LoginForm,
@@ -21,5 +22,6 @@ export {
     WelcomeSection,
     ProfileCard,
     InfoCard,
-    SkillsCard
+    SkillsCard,
+    AddSkillsForm
 }
