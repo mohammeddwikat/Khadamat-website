@@ -17,8 +17,8 @@ const EntrancePages = (props) => {
       else if(props.typePage === 'code'){
         return <CodeForm/>
       }
-      else if(props.typePage === 'reset'){
-        return <ResetPasswordForm/>
+      else if(props.typePage === "reset"){
+        return props.form
       }
       else{
         return <div>Error 404 <br/> not found</div>

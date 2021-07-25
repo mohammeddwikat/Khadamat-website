@@ -15,6 +15,7 @@ import {
   ProfileProductOwner,
   AddSkillsPage
 } from "./pages";
+import {ResetPasswordForm} from './pages/components'
 
 const cc = () => (
   <div>
@@ -118,6 +119,12 @@ function App() {
           )}
         />
         <Route
+          path="/resetPassword/:accessToken"
+          component={({ match }) => (
+            <EntrancePages typePage={"reset"}  form={<ResetPasswordForm accessToken={match.params.accessToken} />}/>
+          )}
+        />
+        <Route
           path="/profile/:id"
           component={({ match }) => (
             <ProfilePageFreelancer id={match.params.id} />
@@ -131,7 +138,7 @@ function App() {
           path="/freeLancer/addSkills/:id"
           component= {({match}) => <AddSkillsPage id={match.params.id}/>}
         />
-      
+       
       </Switch>
     </Router>
   );

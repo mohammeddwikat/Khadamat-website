@@ -8,8 +8,8 @@ import Hidden from '@material-ui/core/Hidden';
 import useStyles from './formsStyle'
 // import axios from 'axios'
 
-const ResetPasswordForm = () => {
-
+const ResetPasswordForm = (props) => {
+  const accessToken = props.accessToken
   const classes = useStyles();
   let [values, setValues] = React.useState({
     email: "",

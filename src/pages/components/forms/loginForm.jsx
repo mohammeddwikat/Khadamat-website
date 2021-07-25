@@ -64,6 +64,8 @@ const LoginForm = () => {
         history.push("/page/login")
       }
       
+    }else{
+      history.push("/page/login")
     }
   }, []);
 

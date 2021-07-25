@@ -123,7 +123,7 @@ const SignUpForm = () => {
               idField={"locationField"}
               titles={cities}
               label={"المدينة السكنية"}
-              onChange={(event, option) => setValues({...values, profileType:option != null ? option.title: ""})}
+              onChange={(event, option) => setValues({...values, location: option != null ? option.title: ""})}
               iconField={<HomeIcon className={classes.uniformColor}/>}
             />
             <DropDownListFilter

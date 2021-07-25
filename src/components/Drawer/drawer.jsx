@@ -75,7 +75,7 @@ function Drawer() {
               ["صفحة البداية", "تسجيل الدخول", "الانضمام الى خدمات"],
               ["/", "/page/login", "/page/signUp"]
             )
-          : drawerItems(
+          : JSON.parse(sessionStorage.getItem("userData")).profileType === 'F' ? drawerItems(
               ["صفحتي الشخصية", "صفحة الرئيسية", "اضافة مهارات", "مشاريعي", "طلباتي","تسجيل خروج"],
               [
                 "/profile/" + JSON.parse(sessionStorage.getItem("userData")).id,
@@ -85,6 +85,19 @@ function Drawer() {
                 "/page/signUp",
                 "/"
               ]
+            ):JSON.parse(sessionStorage.getItem("userData")).profileType == "P"? drawerItems(
+              ["صفحتي الشخصية", "صفحة الرئيسية", "اضافة مشاريع", "مشاريعي", "العروض","تسجيل خروج"],
+              [
+                "/productOwner/" + JSON.parse(sessionStorage.getItem("userData")).id,
+                "/",
+                "/",//productOwner/addProject/id
+                "/page/login",
+                "/page/signUp",
+                "/"
+              ]
+            ):drawerItems(
+              ["صفحة البداية", "تسجيل الدخول", "الانضمام الى خدمات"],
+              ["/", "/page/login", "/page/signUp"]
             )
             }
         <Divider />
