@@ -1,4 +1,4 @@
-import { LoginForm, SignUpForm, ForgetForm, CodeForm, ResetPasswordForm } from "../components";
+import { LoginForm, SignUpForm, ForgetForm, CodeForm } from "../components";
 import {NavigationBar, Drawer} from '../../components'
 import { Provider } from 'react-redux';
 import {rootReducers} from '../../components/Reducers'

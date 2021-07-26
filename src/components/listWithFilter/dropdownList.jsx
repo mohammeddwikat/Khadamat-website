@@ -10,17 +10,12 @@ import clsx from "clsx"
 
 const filter = createFilterOptions();
 
-const filterOptions = createFilterOptions({
-  matchFrom: "start",
-  stringify: (option) => option.title,
-});
-
-
 export default function DropDownListFilter(props) {
     const classes = useStyles()
 
   return (
     <Autocomplete
+      className={props.styleDropDown}
       value={props.value}
       freeSolo={props.freeSolo}
       id={props.id}
@@ -38,7 +33,7 @@ export default function DropDownListFilter(props) {
       filterOptions={(options, params) => {
       const filtered = filter(options, params);
 
-        if (params.inputValue !== '' && props.freeSolo == true) {
+        if (params.inputValue !== '' && props.freeSolo === true) {
           filtered.push({
             value: params.inputValue,
             title: params.inputValue,
@@ -50,23 +45,22 @@ export default function DropDownListFilter(props) {
       sx={{ width: 300 }}
       onChange={props.onChange}
       renderInput={(params) => (
-        <div className={classes.margin}>
+        <div className={props.noSpace?null:classes.margin}>
           <Grid className={clsx(classes.gridStyle, props.newGridStyle)} container spacing={1} alignItems="flex-end">
           
-            <Grid item>
+            <Grid item className={props.newGridStyle}>
               <TextField
-              
-              className={clsx(classes.inputStyle, props.newInputStyle)}
-                style={{ width: "25ch" }}
+                variant={props.variant}
+                className={clsx(classes.inputStyle, props.newInputStyle)}
+                style={{ width: props.width?props.width:"25ch" }}
                 {...params}
                 id={props.idField}
                 label={props.label}
+                placeholder={props.placeholder}
                 data-cy={props.dataCy}
-                
                 InputProps={{
                   ...params.InputProps,
                   endAdornment: <span ></span>
-                  
                 }}
               />
             </Grid>

@@ -23,6 +23,7 @@ const GeneralTextField = (props) => {
             label={props.label}
             className={classes.inputStyle}
             data-cy={props.dataCy}
+            style={props.style}
           />
         </Grid>
         <Grid item>

@@ -9,7 +9,7 @@ export default function SnackBarReducer(state = initialState, action) {
     case "CLOSESNACK":
       return {
         status: "default",
-        open:action.value,
+        open: false,
         text:"default"
       };
     case "OPENSNACK":

@@ -1,42 +1,48 @@
 import useStyle from "./skillsCardStyle";
 import Paper from "@material-ui/core/Paper";
-import Avatar from "@material-ui/core/Avatar";
-import { GeneralButton } from "../../../components";
-import axios from "axios";
 import Chip from "@material-ui/core/Chip";
+import { useEffect, useState } from "react";
 
 const SkillsCard = (props) => {
   const classes = useStyle();
-  const id = props.id;
+  const id = parseInt(props.id);
+  const user = JSON.parse(sessionStorage.getItem("userData"));
+  const [test] = useState("لا يوجود مهارات قم باضافتها");
+  const [chips, setChips] = useState({
+    listChips: [],
+  });
+
+  useEffect(() => {
+    const skills = JSON.parse(user.skills).skills;
+    setChips({ listChips: skills });
+  }, []);
 
   const MyCard = () => (
     <Paper className={classes.paperSkills}>
-      {[
-        "فوتوشوب",
-        "برمجة ويب",
-        "تدريس برمجة الحاسوب",
-        "مونتاج",
-        "عمل اعلانات",
-      ].map((skill) => (
-        <Chip key={skill} className={classes.chip} label={skill} />
-      ))}
+      {chips.listChips.length === 0 ? (
+        <h4 className={classes.nothingTitle}>{test}</h4>
+      ) : (
+        chips.listChips.map((chip, index) => (
+          <Chip
+            key={index}
+            className={classes.chipStyle}
+            label={chip}
+          />
+        ))
+      )}
     </Paper>
   );
   const UserCard = () => (
     <Paper className={classes.paperSkills}>
-      {[
-        "From API",
-        "From API",
-        "From API",
-        "From API",
-        "From API",
-      ].map((skill) => (
-        <Chip className={classes.chip} label={skill} />
-      ))}
+      {["From API", "From API", "From API", "From API", "From API"].map(
+        (skill) => (
+          <Chip className={classes.chip} label={skill} />
+        )
+      )}
     </Paper>
   );
   const C =
-    JSON.parse(sessionStorage.getItem("userData")).id == id ? MyCard : UserCard;
+    JSON.parse(sessionStorage.getItem("userData")).id === id ? MyCard : UserCard;
   return <C />;
 };
 

@@ -13,7 +13,8 @@ import {
   WelcomePage,
   ProfilePageFreelancer,
   ProfileProductOwner,
-  AddSkillsPage
+  AddSkillsPage,
+  AddProjectPage
 } from "./pages";
 import {ResetPasswordForm} from './pages/components'
 
@@ -138,7 +139,10 @@ function App() {
           path="/freeLancer/addSkills/:id"
           component= {({match}) => <AddSkillsPage id={match.params.id}/>}
         />
-       
+        <Route 
+          path="/addProject/productOwner/:id"
+          component= {({match}) => <AddProjectPage id={match.params.id}/>}
+        />
       </Switch>
     </Router>
   );

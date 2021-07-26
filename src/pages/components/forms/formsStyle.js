@@ -64,10 +64,19 @@ let useStyles = makeStyles((theme) => ({
     "& .MuiInputBase-root": {
       width: "100%!important",
       paddingRight: "0px!important",
+      
     },
   },
   newGridStyle: {
     width: "100%!important",
+    margin:"0!important",
+    "& .MuiInputBase-root": {
+      width: "104%!important",
+      paddingRight: "0px!important",
+      '&.Mui-focused fieldset':{
+        borderColor: "#0077b6",
+      }
+    },
   },
   fromAddSkillsFields: {
     display: "flex",
@@ -76,7 +85,8 @@ let useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   skills: {
-    boxShadow: "0px 0px 3px 2px gray",
+    boxShadow: "none",
+    border:'1px solid lightGrey',
     width: "100%",
     display: "flex",
     justifyContent:"flex-start",
@@ -95,6 +105,23 @@ let useStyles = makeStyles((theme) => ({
     backgroundColor:"#0077bB",
     color:'white'
   },
+  eData:{
+    [theme.breakpoints.up('sm')]: {
+      paddingRight: "10px",
+    },
+    [theme.breakpoints.down('sm')]: {
+      paddingRight: "0",
+    }
+  },
+  dropDown:{
+    width:"100%",
+    '& .MuiInputBase-root':{
+      width:'100%'
+    }
+  },
+  marginBottom:{
+    marginBottom:theme.spacing(3)
+  }
  
 }));
 

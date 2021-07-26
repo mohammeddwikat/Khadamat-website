@@ -20,7 +20,16 @@ let useStyles = makeStyles((theme) => ({
       },
     },
   },
-
+  textFullWidth:{
+    '& legend':{
+      textAlign:"initial!important"
+    },
+    "& .MuiInputBase-fullWidth": {
+      '&.Mui-focused fieldset':{
+        borderColor: "#0077b6",
+      }
+    },
+  },
   gridStyle: {
     flexWrap: "nowrap",
     justifyContent: "center",

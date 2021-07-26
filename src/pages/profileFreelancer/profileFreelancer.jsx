@@ -4,7 +4,6 @@ import {rootReducers} from "../../components/Reducers";
 import { ProfileCard, InfoCard, SkillsCard } from "../components";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Chip from "@material-ui/core/Chip";
 import useStyle from "./profileFreelancerStyle";
 import {useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
@@ -17,13 +16,14 @@ const storeProfileCardSnackBar = createStore(snackProfileCardReducer)
 const storeNavDrawer = createStore(rootReducers);
 
 const ProfilePageFreelancer = (props) => {
-  const id = props.id;
+  const id = parseInt(props.id)
   const classes = useStyle();
   const history = useHistory()
 
+
   useEffect(()=> {
-    if(sessionStorage.getItem('userData') == undefined){
-      history.push("page/login")
+    if(sessionStorage.getItem('userData') === null){
+      history.push("/page/login")
     }
   }, [])
 

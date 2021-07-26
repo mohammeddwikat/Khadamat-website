@@ -7,7 +7,6 @@ import code from "../../../images/code.jpg";
 import Hidden from "@material-ui/core/Hidden";
 import useStyles from "./formsStyle";
 import axios from "axios";
-// import axios from 'axios'
 import {useHistory} from 'react-router-dom'
 
 const ResetPasswordForm = (props) => {
@@ -26,7 +25,6 @@ const ResetPasswordForm = (props) => {
 
   const submit = (event) => {
     event.preventDefault();
-    console.log({ accessToken });
     axios({
       method: "POST",
       url: "https://k.wadq.dev/setNewPassword",
@@ -50,8 +48,6 @@ const ResetPasswordForm = (props) => {
       <Hidden only={["xs", "sm"]}>
         <img
           className={classes.imageStyle}
-          src={code}
-          alt="people"
           src={code}
           alt="people"
           width={width / 5}

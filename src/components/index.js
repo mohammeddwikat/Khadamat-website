@@ -4,7 +4,8 @@ import GeneralTextField from './textField/textField'
 import GeneralButton from './button/button'
 import DropDownListFilter from './listWithFilter/dropdownList'
 import SnackBar from './snackbar/snackbar'
-import MultipleSelectChip from '../components/dropListChipMultible/dropListChipMultible'
+import MultipleSelectChip from './dropListChipMultible/dropListChipMultible'
+import FullTextField from './textField/fullTextFieldOutlined'
 
 export  {
     NavigationBar,
@@ -13,5 +14,6 @@ export  {
     GeneralButton,
     DropDownListFilter,
     SnackBar,
-    MultipleSelectChip
+    MultipleSelectChip,
+    FullTextField,
 }

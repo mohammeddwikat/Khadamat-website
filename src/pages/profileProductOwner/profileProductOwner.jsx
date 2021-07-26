@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import { NavigationBar, Drawer, SnackBar } from "../../components";
 import { Provider } from "react-redux";
 import { rootReducers } from "../../components/Reducers";
@@ -8,7 +7,7 @@ import {ProfileCardReducer} from '../reducers'
 import {SnackBarReducer} from '../../components/Reducers'
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { ProfileCard, InfoCard, SkillsCard } from "../components";
+import { ProfileCard, InfoCard } from "../components";
 
 const storeNavDrawer = createStore(rootReducers);
 const snackProfileCardReducer = combineReducers({SnackBarReducer, ProfileCardReducer})

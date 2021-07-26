@@ -6,17 +6,17 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import { connect, useDispatch, useSelector } from "react-redux";
 import useStyles from "./drawerStyle";
 import Typography from "@material-ui/core/Typography";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Drawer() {
   const classes = useStyles();
   const anchor = "right";
   const history = useHistory();
   const dispatch = useDispatch();
+  
   const state = useSelector((state) => state.DrawerReducer);
   const drawerItems = (names, links, icons = []) =>
     names.map((name, index) => (
@@ -70,7 +70,7 @@ function Drawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {sessionStorage.getItem("userData") == undefined
+        {sessionStorage.getItem("userData") === null
           ? drawerItems(
               ["صفحة البداية", "تسجيل الدخول", "الانضمام الى خدمات"],
               ["/", "/page/login", "/page/signUp"]
@@ -85,12 +85,12 @@ function Drawer() {
                 "/page/signUp",
                 "/"
               ]
-            ):JSON.parse(sessionStorage.getItem("userData")).profileType == "P"? drawerItems(
+            ):JSON.parse(sessionStorage.getItem("userData")).profileType === "P"? drawerItems(
               ["صفحتي الشخصية", "صفحة الرئيسية", "اضافة مشاريع", "مشاريعي", "العروض","تسجيل خروج"],
               [
                 "/productOwner/" + JSON.parse(sessionStorage.getItem("userData")).id,
                 "/",
-                "/",//productOwner/addProject/id
+                "/addProject/productOwner/" + JSON.parse(sessionStorage.getItem("userData")).id,
                 "/page/login",
                 "/page/signUp",
                 "/"

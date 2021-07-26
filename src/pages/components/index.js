@@ -10,6 +10,7 @@ import ProfileCard from './profileCard/profileCard'
 import InfoCard from './infoCard/infoCard'
 import SkillsCard from './skillsCard/skillsCard'
 import AddSkillsForm from './forms/addSkills'
+import AddProjectForm from './forms/addProject'
 
 export {
     LoginForm,
@@ -23,5 +24,6 @@ export {
     ProfileCard,
     InfoCard,
     SkillsCard,
-    AddSkillsForm
+    AddSkillsForm,
+    AddProjectForm
 }

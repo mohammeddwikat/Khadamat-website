@@ -1,7 +1,7 @@
 import { IconButton } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import useStyles from "./welcomeSectionStyle";
-import {Cover, ColoredCover, SVGCurve} from '../'
+import {ColoredCover, SVGCurve} from '../'
  
 const WelcomeSection = () => {
   const classes = useStyles();

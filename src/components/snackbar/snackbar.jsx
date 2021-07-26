@@ -18,7 +18,7 @@ const SnackBar = (props) => {
       return;
     }
 
-    dispatch({ type: "CLOSESNACK", open: false });
+    dispatch({ type: "CLOSESNACK"});
   };
 
   return (

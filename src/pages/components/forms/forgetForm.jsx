@@ -7,8 +7,6 @@ import Hidden from '@material-ui/core/Hidden';
 import EmailIcon from '@material-ui/icons/Email';
 import useStyles from './formsStyle'
 import axios from "axios";
-// import axios from 'axios'
-
 
 const ForgetForm = () => {
   const classes = useStyles();
@@ -69,6 +67,5 @@ const ForgetForm = () => {
     </container>
   );
 };
-
 
 export default ForgetForm; //connect(mapStateToProps)(form);

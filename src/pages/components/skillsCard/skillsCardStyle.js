@@ -15,6 +15,18 @@ let useStyle = makeStyles((theme) => ({
     color:"white",
     backgroundColor:"#0077b6"
   },
+  nothingTitle: {
+    alignSelf: "center",
+    width: "100%",
+    textAlign: "center",
+  },
+  chipStyle:{
+    margin:theme.spacing(1),
+    flexDirection:"row-reverse!important",
+    backgroundColor:"#0077bB",
+    color:'white'
+  },
+ 
 }));
 
 export default useStyle;

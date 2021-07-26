@@ -9,16 +9,6 @@ import EmailIcon from '@material-ui/icons/Email';
 import useStyles from './formsStyle'
 import axios from 'axios'
 
-function parseJwt (token) {
-  var base64Url = token.split('.')[1];
-  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-  }).join(''));
-
-  return JSON.parse(jsonPayload);
-};
-
 const LoginForm = () => {
   const history = useHistory();
   const classes = useStyles();
@@ -30,7 +20,25 @@ const LoginForm = () => {
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
-
+  const redirect = () => {
+    if(sessionStorage.getItem('userData') !== null){
+      if((JSON.parse(sessionStorage.getItem('userData')).profileType) === 'F'){
+        history.push('/profile/'+JSON.parse(sessionStorage.getItem('userData')).id)
+      }
+      else if((JSON.parse(sessionStorage.getItem('userData')).profileType) === 'P'){
+        history.push('/productOwner/'+JSON.parse(sessionStorage.getItem('userData')).id)
+      
+      }else if((JSON.parse(sessionStorage.getItem('userData')).profileType) === 'A'){
+        history.push('/admin/'+JSON.parse(sessionStorage.getItem('userData')).id)
+      }
+      else{
+        history.push("/page/login")
+      }
+      
+    }else{
+      history.push("/page/login")
+    }
+  }
   const submit = (event) => {
     event.preventDefault()
     axios({
@@ -41,33 +49,15 @@ const LoginForm = () => {
         password: values.password
       }
     }).then((response) => {
-      console.log((response.data.result[0]))
       sessionStorage.setItem("userData", JSON.stringify(response.data.result[0]));
       sessionStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
-      history.push('/profile/'+response.data.result[0].id)
-
-      
+      redirect()
     }, (err) => {
       alert(err)
     });
   }
-
-  useEffect (()=>{
-    if(sessionStorage.getItem('userData') != undefined){
-      if(JSON.parse(sessionStorage.getItem('userData')).profileType === 'F'){
-        history.push('/profile/'+JSON.parse(sessionStorage.getItem('userData')).id)
-      }else if(JSON.parse(sessionStorage.getItem('userData')).profileType === 'P'){
-        history.push('/productOwner/'+JSON.parse(sessionStorage.getItem('userData')).id)
-      }else if(JSON.parse(sessionStorage.getItem('userData')).profileType === 'A'){
-        history.push('/admin/'+JSON.parse(sessionStorage.getItem('userData')).id)
-      }else{
-        history.push("/page/login")
-      }
-      
-    }else{
-      history.push("/page/login")
-    }
-  }, []);
+ 
+  useEffect (redirect, []);
 
   return (
     <container className={classes.formContainer}>

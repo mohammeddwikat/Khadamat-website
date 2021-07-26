@@ -55,20 +55,20 @@ const SignUpForm = () => {
     formData.append("email", values.email);
     formData.append("password", values.password);
     formData.append("location", values.location);
-    formData.append("profileType", values.type);
+    formData.append("profileType", values.profileType);
     formData.append("phonenumber", values.phoneNumber);
     formData.append("username", values.firstName + " " + values.lastName);
     axios.post("https://k.wadq.dev/signup", formData).then(
-      (res) => {
+      (response) => {
         history.push("/page/login");
       },
-      (err) => {
-        alert(err);
+      (error) => {
+        alert(error);
       }
     );
   };
   useEffect(() => {
-    if (sessionStorage.getItem("userData") != undefined) {
+    if (sessionStorage.getItem("userData") !== null) {
       history.push(
         "/profile/" + JSON.parse(sessionStorage.getItem("userData")).id
       );

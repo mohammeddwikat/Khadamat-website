@@ -8,10 +8,10 @@ import {useHistory} from 'react-router-dom'
 const storeNavDrawer = createStore(rootReducers);
 
 const AddSkillsPage = (props) => {
-  const id = props.id;
+  const id = parseInt(props.id);
   const classes = useStyle();
   const history = useHistory()
-  if(id == JSON.parse(sessionStorage.getItem("userData")).id){
+  if(id === JSON.parse(sessionStorage.getItem("userData")).id){
     return (
         
         <div className={classes.addSkills}>
@@ -19,7 +19,7 @@ const AddSkillsPage = (props) => {
             <NavigationBar />
             <Drawer />
         </Provider>
-        <AddSkillsForm/>
+        <AddSkillsForm id={id}/>
         </div>
     );
    }else{

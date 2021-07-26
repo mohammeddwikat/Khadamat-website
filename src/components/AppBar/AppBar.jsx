@@ -98,7 +98,7 @@ function NavigationBar() {
     </Menu>
   );
   const renderMobileMenu = (
-    sessionStorage.getItem('userData') == undefined? menuMobileNotLogged :
+    sessionStorage.getItem('userData') === null? menuMobileNotLogged :
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "left" }}
@@ -172,7 +172,7 @@ function NavigationBar() {
               <MoreIcon />
             </IconButton>
           </div>
-          {sessionStorage.getItem("userData") == undefined ? (
+          {sessionStorage.getItem("userData") === null ? (
             renderNotLogged
           ) : (
             <div className={classes.sectionDesktop}>
