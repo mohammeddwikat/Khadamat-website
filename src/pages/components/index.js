@@ -11,6 +11,9 @@ import InfoCard from './infoCard/infoCard'
 import SkillsCard from './skillsCard/skillsCard'
 import AddSkillsForm from './forms/addSkills'
 import AddProjectForm from './forms/addProject'
+import PercentageRateCircle from './percentageCircle/percentageCircle'
+import AlignItemsList from './listFeedbacks/listFeedbacks'
+import AddWorkForm from './forms/addWorkForm'
 
 export {
     LoginForm,
@@ -25,5 +28,8 @@ export {
     InfoCard,
     SkillsCard,
     AddSkillsForm,
-    AddProjectForm
+    AddProjectForm,
+    PercentageRateCircle,
+    AlignItemsList,
+    AddWorkForm
 }

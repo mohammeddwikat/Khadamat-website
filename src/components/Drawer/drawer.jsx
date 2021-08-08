@@ -10,29 +10,39 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import useStyles from "./drawerStyle";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
+import Avatar from "@material-ui/core/Avatar";
+import { useEffect, useState } from "react";
 
 function Drawer() {
   const classes = useStyles();
   const anchor = "right";
   const history = useHistory();
   const dispatch = useDispatch();
-  
+  const [id, setId] = useState("")
   const state = useSelector((state) => state.DrawerReducer);
+
+  const [image, setImage] = useState("");
+  useEffect(() => {
+    if (sessionStorage.getItem("userData") != null) {
+      setId(JSON.parse(sessionStorage.getItem("userData")).id);
+      setImage('https://K.wadq.dev/getProfilePic/'+JSON.parse(sessionStorage.getItem("userData")).id);
+    }
+  }, []);
+
   const drawerItems = (names, links, icons = []) =>
     names.map((name, index) => (
       <ListItem button key={name} className={classes.root}>
         <ListItemText
           onClick={() => {
-            if(name === 'تسجيل خروج'){
+            if (name === "تسجيل خروج") {
               sessionStorage.removeItem("accessToken");
               sessionStorage.removeItem("userData");
-              const startPageIndex = history.length - 1
-              history.go(startPageIndex)
-              history.push("/")
-            }else{
-              history.push(links[index])
+              const startPageIndex = history.length - 1;
+              history.go(startPageIndex);
+              history.push("/");
+            } else {
+              history.push(links[index]);
             }
-            
           }}
           disableTypography
           primary={
@@ -70,40 +80,59 @@ function Drawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
+        {sessionStorage.getItem("userData") === null ? null : <Divider />}
         {sessionStorage.getItem("userData") === null
           ? drawerItems(
               ["صفحة البداية", "تسجيل الدخول", "الانضمام الى خدمات"],
               ["/", "/page/login", "/page/signUp"]
             )
-          : JSON.parse(sessionStorage.getItem("userData")).profileType === 'F' ? drawerItems(
-              ["صفحتي الشخصية", "صفحة الرئيسية", "اضافة مهارات", "مشاريعي", "طلباتي","تسجيل خروج"],
+          : JSON.parse(sessionStorage.getItem("userData")).profileType === "F"
+          ? drawerItems(
               [
-                "/profile/" + JSON.parse(sessionStorage.getItem("userData")).id,
+                "صفحتي الشخصية",
+                "صفحة الرئيسية",
+                "اضافة مهارات",
+                "مشاركة عمل",
+                "معرض أعمالي",
+                "طلباتي",
+                "تسجيل خروج",
+              ],
+              [
+                `/profile/${id}`,
                 "/",
-                "/freeLancer/addSkills/"+JSON.parse(sessionStorage.getItem("userData")).id,
+                `/freeLancer/addSkills/${id}`,
+                `/addWork/freelancer/${id}` ,
+                `/worksGallery/freelancer/${id}`,
+                "/page/signUp",
+                "/",
+              ]
+            )
+          : JSON.parse(sessionStorage.getItem("userData")).profileType === "P"
+          ? drawerItems(
+              [
+                "صفحتي الشخصية",
+                "صفحة الرئيسية",
+                "اضافة مشاريع",
+                "مشاريعي",
+                "العروض",
+                "تسجيل خروج",
+              ],
+              [
+                "/productOwner/" +
+                  JSON.parse(sessionStorage.getItem("userData")).id,
+                "/",
+                "/addProject/productOwner/" +
+                  JSON.parse(sessionStorage.getItem("userData")).id,
                 "/page/login",
                 "/page/signUp",
-                "/"
-              ]
-            ):JSON.parse(sessionStorage.getItem("userData")).profileType === "P"? drawerItems(
-              ["صفحتي الشخصية", "صفحة الرئيسية", "اضافة مشاريع", "مشاريعي", "العروض","تسجيل خروج"],
-              [
-                "/productOwner/" + JSON.parse(sessionStorage.getItem("userData")).id,
                 "/",
-                "/addProject/productOwner/" + JSON.parse(sessionStorage.getItem("userData")).id,
-                "/page/login",
-                "/page/signUp",
-                "/"
               ]
-            ):drawerItems(
+            )
+          : drawerItems(
               ["صفحة البداية", "تسجيل الدخول", "الانضمام الى خدمات"],
               ["/", "/page/login", "/page/signUp"]
-            )
-            }
-        <Divider />
-        
+            )}
       </List>
-      
     </div>
   );
 
@@ -115,6 +144,18 @@ function Drawer() {
         onClose={toggleDrawer(anchor, false)}
         onOpen={toggleDrawer(anchor, true)}
       >
+        {sessionStorage.getItem("userData") != null ? (
+          <div className={classes.headerDrawer}>
+            <Avatar
+              alt={JSON.parse(sessionStorage.getItem("userData")).name}
+              src={image}
+              className={classes.headerAvatar}
+            />
+            <div>{JSON.parse(sessionStorage.getItem("userData")).name}</div>
+            <div>{JSON.parse(sessionStorage.getItem("userData")).email}</div>
+            <Divider />
+          </div>
+        ) : null}
         {list(anchor)}
       </SwipeableDrawer>
     </div>

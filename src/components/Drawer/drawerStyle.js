@@ -17,6 +17,21 @@ let useStyles = makeStyles((theme) => ({
     root:{
       paddingRight:"0",
     },
+    headerDrawer:{
+      height:"25vh",
+      display:'flex',
+      flexDirection:'column',
+      justifyContent:"center",
+      alignItems:"center",
+      backgroundColor: "#0077b6",
+      color:"white"
+    },
+    headerAvatar:{
+      width: "100px!important",
+      height: "100px!important",
+      marginBottom:"3px",
+      
+    },
    
 }));
 

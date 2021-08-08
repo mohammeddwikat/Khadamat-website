@@ -1,7 +1,7 @@
 import { NavigationBar, Drawer, SnackBar } from "../../components";
 import { Provider } from "react-redux";
 import {rootReducers} from "../../components/Reducers";
-import { ProfileCard, InfoCard, SkillsCard } from "../components";
+import { ProfileCard, InfoCard, SkillsCard, PercentageRateCircle, AlignItemsList } from "../components";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import useStyle from "./profileFreelancerStyle";
@@ -10,6 +10,7 @@ import {useHistory} from 'react-router-dom'
 import { combineReducers, createStore } from 'redux';
 import {ProfileCardReducer} from '../reducers'
 import {SnackBarReducer} from '../../components/Reducers'
+import {Link} from 'react-router-dom'
 
 const snackProfileCardReducer = combineReducers({SnackBarReducer, ProfileCardReducer})
 const storeProfileCardSnackBar = createStore(snackProfileCardReducer)
@@ -28,7 +29,7 @@ const ProfilePageFreelancer = (props) => {
   }, [])
 
   return (
-    <div style={{overflowX:"hidden"}}>
+    <div>
       <Provider store={storeNavDrawer}>
         <NavigationBar></NavigationBar>
         <Drawer></Drawer>
@@ -42,7 +43,7 @@ const ProfilePageFreelancer = (props) => {
               spacing={3}
               style={{ padding: "20px" }}
             >
-              <Grid item xs={12} lg={3} md={3}>
+              <Grid item xs={12} lg={3} md={6}>
                 <Grid item lg={12} md={12} xs={12}>
                   <Provider store={storeProfileCardSnackBar}>
                     <ProfileCard id={id}/>
@@ -50,12 +51,18 @@ const ProfilePageFreelancer = (props) => {
                   </Provider>
                 </Grid>
               </Grid>
-              <Grid item lg={4} xs={12}>
+              <Grid item lg={4} md={6} xs={12}>
                 <InfoCard id = {id}/>
                 <SkillsCard id ={id}/>
               </Grid>
-              <Grid item xs={3} ا4>
-                <Paper className={classes.paper}>xs=6</Paper>
+              <Grid item lg= {5} md={4} xs={12} >
+                
+                <Paper className={classes.paper}> 
+                  <PercentageRateCircle percent={55}/>
+                  <AlignItemsList id={id}/>
+                  <Link className={classes.feedbacksLink} to='/'> مشاهدة المزيد من التقييمات</Link>
+                </Paper>
+
               </Grid>
 
               <Grid item xs={3}>
@@ -63,6 +70,7 @@ const ProfilePageFreelancer = (props) => {
               </Grid>
               <Grid item xs={3}>
                 <Paper className={classes.paper}>xs=3</Paper>
+              
               </Grid>
               <Grid item xs={3}>
                 <Paper className={classes.paper}>xs=3</Paper>

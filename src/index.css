@@ -19,3 +19,37 @@ input[type=number] {
 * {
   font-family: 'Tajawal', sans-serif !important;
 }
+
+
+.MuiPickersDatePickerRoot-toolbar, .MuiPickersDay-daySelected {
+  background-color: #0077b6 !important;
+  color:white !important;
+}
+
+.MuiDialogActions-root > .MuiButtonBase-root{
+  color: #0077b6 !important;
+}
+
+@media only screen and (min-width: 600px) {
+  
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0077b6; 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #005590; 
+}
+}

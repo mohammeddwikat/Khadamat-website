@@ -14,7 +14,9 @@ import {
   ProfilePageFreelancer,
   ProfileProductOwner,
   AddSkillsPage,
-  AddProjectPage
+  AddProjectPage,
+  AddWorkPage,
+  WorksGallery
 } from "./pages";
 import {ResetPasswordForm} from './pages/components'
 
@@ -142,6 +144,14 @@ function App() {
         <Route 
           path="/addProject/productOwner/:id"
           component= {({match}) => <AddProjectPage id={match.params.id}/>}
+        />
+        <Route 
+          path="/addWork/freelancer/:id"
+          component= {({match}) => <AddWorkPage id={match.params.id}/>}
+        />
+        <Route 
+          path="/worksGallery/freelancer/:id"
+          component= {({match}) => <WorksGallery id={match.params.id}/>}
         />
       </Switch>
     </Router>

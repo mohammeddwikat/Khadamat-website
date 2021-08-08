@@ -1,17 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   FullTextField,
   GeneralTextField,
   MultipleSelectChip,
 } from "../../../components";
 import Grid from "@material-ui/core/Grid";
-import { DropDownListFilter, GeneralButton } from "../../../components";
 import useStyle from "./formsStyle";
-import clsx from "clsx";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
-import Paper from "@material-ui/core/Paper";
-import Chip from "@material-ui/core/Chip";
 import axios from "axios";
+import Hidden from "@material-ui/core/Hidden";
+import addProject from "../../../images/newWork.jpg";
+import clsx from "clsx";
+import Chip from "@material-ui/core/Chip";
+import Paper from "@material-ui/core/Paper";
+import { DropDownListFilter, GeneralButton } from "../../../components";
 
 let skillsList = [
   { title: "تصميم مواقع" },
@@ -217,6 +219,10 @@ const AddSkillsForm = (props) => {
 const AddProjectForm = (props) => {
   const id = parseInt(props.id);
   const classes = useStyle();
+  const inputFile = useRef(null);
+  const [files, setFiles] = useState({
+    filesList: [],
+  });
   const [values, setValues] = useState({
     title: "",
     skills: [],
@@ -241,129 +247,212 @@ const AddProjectForm = (props) => {
     setValues({ ...values, skills: skillsForAdd });
   };
 
+  const fileHandle = (event) => {
+    setFiles({
+      filesList: [event.target.files],
+    });
+  };
+  useEffect(() => {
+    if (files.filesList.length !== 0) {
+      console.log(Object.values(files.filesList[0]));
+      Object.values(files.filesList[0]).map((file) => console.log(file.name));
+    }
+  });
+
   return (
     <div>
       <h3>اضافة مشروع جديد</h3>
       <Grid container spacing={3}>
-        <Grid item lg={6} md={8} sm={10} xs={12}>
-        <Grid item xs={12}>
+        <Grid item lg={6} md={12} sm={10} xs={12}>
           <Grid item xs={12}>
-            عنوان المشروع
-          </Grid>
-          <Grid className={classes.marginBottom} lg={12} md={12} s={12} xs={12}>
-            <FullTextField
-              name={"title"}
-              id={"title"}
-              placeholder={"عنوان المشروع"}
-            />
-            
-          </Grid>
-        </Grid>
-        <Grid className={classes.marginBottom} item xs={12}>
-          <Grid item xs={12}>
-            المهارات المطلوبة
-          </Grid>
-          <Grid xs={12}>
-            <AddSkillsForm
-              button={"no"}
+            <Grid item xs={12}>
+              عنوان المشروع
+            </Grid>
+            <Grid
+              className={classes.marginBottom}
               lg={12}
-              xs={12}
               md={12}
               s={12}
-              id={id}
-              newStyle={{ direction: "ltr" }}
-            />
+              xs={12}
+            >
+              <FullTextField
+                name={"title"}
+                id={"title"}
+                placeholder={"عنوان المشروع"}
+              />
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid className={classes.marginBottom} item xs={12}>
-          <Grid item xs={12}>
-            وصف المشروع
+          <Grid className={classes.marginBottom} item xs={12}>
+            <Grid item xs={12}>
+              المهارات المطلوبة
+            </Grid>
+            <Grid xs={12}>
+              <AddSkillsForm
+                button={"no"}
+                lg={12}
+                xs={12}
+                md={12}
+                s={12}
+                id={id}
+                newStyle={{ direction: "ltr" }}
+              />
+            </Grid>
           </Grid>
-          <Grid xs={12}>
-            <FullTextField
-              name={"description"}
-              id={"description"}
-              placeholder={"وصف المشروع"}
-              rows={8}
-            />
+          <Grid className={classes.marginBottom} item xs={12}>
+            <Grid item xs={12}>
+              وصف المشروع
+            </Grid>
+            <Grid xs={12}>
+              <FullTextField
+                name={"description"}
+                id={"description"}
+                placeholder={"وصف المشروع"}
+                rows={8}
+              />
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid className={classes.marginBottom} item xs={12}>
-          <Grid container xs={12}>
-            <Grid item lg={6} md={6} sm={6} xs={12}>
-              <Grid item xs={12}>
-                الميزانية المتوقعة
+          <Grid className={classes.marginBottom} item xs={12}>
+            <Grid container xs={12}>
+              <Grid item lg={6} md={6} sm={6} xs={12}>
+                <Grid item xs={12}>
+                  الميزانية المتوقعة
+                </Grid>
+                <Grid item xs={12} style={{ width: "100%" }}>
+                  <DropDownListFilter
+                    freeSolo={false}
+                    id={"expectedFund"}
+                    dataCy={"expectedFund"}
+                    idField={"expectedFundField"}
+                    titles={expectedFundList}
+                    placeholder={"الميزانية المتوقعة"}
+                    newInputStyle={{ width: "100%" }}
+                    variant={"outlined"}
+                    width={"100%"}
+                    noSpace={"true"}
+                    styleDropDown={classes.dropDown}
+                    newGridStyle={classes.newGridStyle}
+                    onChange={(event, option) => {
+                      if (option !== null) {
+                        setValues({
+                          ...values,
+                          expectedFund: {
+                            min: option.value.min,
+                            max: option.value.max,
+                          },
+                        });
+                      }
+                    }}
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={12} style={{ width: "100%" }}>
-                <DropDownListFilter
-                  freeSolo={false}
-                  id={"expectedFund"}
-                  dataCy={"expectedFund"}
-                  idField={"expectedFundField"}
-                  titles={expectedFundList}
-                  placeholder={"الميزانية المتوقعة"}
-                  newInputStyle={{ width: "100%" }}
-                  variant={"outlined"}
-                  width={"100%"}
-                  noSpace={"true"}
-                  styleDropDown={classes.dropDown}
-                  newGridStyle={classes.newGridStyle}
-                  onChange={(event, option) => {
-                    if (option !== null) {
-                      setValues({
-                        ...values,
-                        expectedFund: {
-                          min: option.value.min,
-                          max: option.value.max,
-                        },
-                      });
-                    }
-                  }}
+              <Grid item lg={6} md={6} sm={6} xs={12} className={classes.eData}>
+                <Grid item xs={12}>
+                  المدة المتوقعة للتسليم
+                </Grid>
+                <Grid item xs={12}>
+                  <DropDownListFilter
+                    freeSolo={false}
+                    id={"expectedDays"}
+                    dataCy={"expectedDays"}
+                    idField={"expectedDaysField"}
+                    titles={expectedDayList}
+                    placeholder={" المدة المتوقعة للتسليم"}
+                    newInputStyle={{ width: "100%" }}
+                    variant={"outlined"}
+                    width={"100%"}
+                    noSpace={"true"}
+                    styleDropDown={classes.dropDown}
+                    newGridStyle={classes.newGridStyle}
+                    onChange={(event, option) => {
+                      if (option !== null) {
+                        alert(option.value.min);
+                        setValues({
+                          ...values,
+                          expectedDays: {
+                            min: option.value.min,
+                            max: option.value.max,
+                          },
+                        });
+                      }
+                    }}
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item lg={6} xs={12}>
+            <Grid  className={classes.marginBottom}  container spacing={1}>
+            
+              <Grid item xs={12}>
+                <Grid item lg={4} xs={6}>
+                  <Grid item lg={12} xs={12}>
+                    <GeneralButton
+                      newStyle={{
+                        margin: 0,
+                        marginBottom: "16px",
+                        marginTop: "10px",
+                        backgroundColor: "white",
+                        color: "black",
+                      }}
+                      onClick={() => inputFile.current.click()}
+                      title={"اضافة ملحقات"}
+                    />
+                    <input
+                      multiple={true}
+                      onChange={fileHandle}
+                      name="image"
+                      type="file"
+                      id="file"
+                      ref={inputFile}
+                      style={{ display: "none" }}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid item lg={6} xs={12}>
+               
+                    {files.filesList.length !== 0 ? (
+                      Object.values(files.filesList[0]).map((file) => (
+                        <div key={file.name}>{file.name}</div>
+                      ))
+                    ) : (
+                      <div>لا يوجد ملفات تم اختياراها</div>
+                    )}
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} style={{ marginRight: "2px" }}>
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <GeneralButton
+                  newStyle={{ width: "101%", margin: "0" }}
+                  title={"نشر"}
+                  onClick={test}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <GeneralButton
+                  newStyle={{ width: "101%", margin: "0" }}
+                  title={"حفظ كمسودة"}
+                  onClick={test}
                 />
               </Grid>
             </Grid>
-            <Grid item lg={6} md={6} sm={6} xs={12} className={classes.eData}>
-              <Grid item xs={12}>
-                المدة المتوقعة للتسليم
-              </Grid>
-              <Grid item xs={12}>
-                <DropDownListFilter
-                  freeSolo={false}
-                  id={"expectedDays"}
-                  dataCy={"expectedDays"}
-                  idField={"expectedDaysField"}
-                  titles={expectedDayList}
-                  placeholder={" المدة المتوقعة للتسليم"}
-                  newInputStyle={{ width: "100%" }}
-                  variant={"outlined"}
-                  width={"100%"}
-                  noSpace={"true"}
-                  styleDropDown={classes.dropDown}
-                  newGridStyle={classes.newGridStyle}
-                  onChange={(event, option) => {
-                    if (option !== null) {
-                      alert(option.value.min)
-                      setValues({
-                        ...values,
-                        expectedDays: {
-                          min: option.value.min,
-                          max: option.value.max,
-                        },
-                      });
-                    }
-                  }}
-                />
-              </Grid>
-            </Grid>
           </Grid>
         </Grid>
-        <GeneralButton title={"test"} onClick={test} />
-        </Grid>
-        <Grid item lg={6} xs={12}> 
-        <div style={{display:"flex",justifyContent:'center',height:"100%" ,alignItems:"center",border:"1px solid black"}}>
-            hidden pic insha' allah 
-        
-        </div>
+
+        <Grid item lg={6} md={4} xs={12}>
+          <Hidden mdDown>
+            <div className={classes.hiddenDivAddProject}>
+              <img
+                src={addProject}
+                alt={"add project"}
+                width="555px"
+                height="600px"
+                style={{ borderRadius: "50%" }}
+              />
+            </div>
+          </Hidden>
         </Grid>
       </Grid>
     </div>

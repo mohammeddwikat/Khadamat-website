@@ -55,6 +55,15 @@ let useStyle = makeStyles((theme) => ({
       background:"#0077b6",
       borderTopRightRadius:"4px",
       borderTopLeftRadius:"4px",
+  },
+  feedbacksLink:{
+    color:"#0077b6",
+    transition:"0.5s",
+    textDecoration:"none",
+    '&:hover':{
+      color:"red",
+      transition:"0.5s",
+    }
   }
 }));
 

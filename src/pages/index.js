@@ -4,6 +4,8 @@ import ProfilePageFreelancer from './profileFreelancer/profileFreelancer'
 import ProfileProductOwner from './profileProductOwner/profileProductOwner'
 import AddSkillsPage from './addSkillsPage/addSkillsPage'
 import AddProjectPage from './addProjectPage/addProjectPage'
+import AddWorkPage from './addWork/addWork'
+import WorksGallery from './worksGallery/worksGallery'
 
 export {
     EntrancePages,
@@ -11,5 +13,7 @@ export {
     ProfilePageFreelancer,
     ProfileProductOwner,
     AddSkillsPage,
-    AddProjectPage
+    AddProjectPage,
+    AddWorkPage,
+    WorksGallery
 }

@@ -71,7 +71,7 @@ let useStyles = makeStyles((theme) => ({
     width: "100%!important",
     margin:"0!important",
     "& .MuiInputBase-root": {
-      width: "104%!important",
+      width: "100%!important",
       paddingRight: "0px!important",
       '&.Mui-focused fieldset':{
         borderColor: "#0077b6",
@@ -121,6 +121,16 @@ let useStyles = makeStyles((theme) => ({
   },
   marginBottom:{
     marginBottom:theme.spacing(3)
+  },
+  hiddenDivAddProject:{
+    display:"flex",
+    justifyContent:'center',
+    height:"100%" ,
+    alignItems:"center",
+  },
+  filesNamesBox:{
+    display:"flex",
+    
   }
  
 }));
