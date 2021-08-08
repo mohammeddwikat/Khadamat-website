@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { rootReducers } from "../../components/Reducers";
 import { createStore } from "redux";
 import clsx from 'clsx'
+import {ImagesGallery} from '../components'
 
 const storeNavDrawer = createStore(rootReducers);
 
@@ -18,7 +19,7 @@ const WorksGallery = (props) => {
         <Drawer />
       </Provider>
       <div className={clsx(classes.worksGallery, classes.rtlDirection)}>
-          معرض الاعمال {id}
+         <ImagesGallery id={id}/>
       </div>
     </div>
   );

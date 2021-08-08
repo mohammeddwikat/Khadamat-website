@@ -14,6 +14,7 @@ import AddProjectForm from './forms/addProject'
 import PercentageRateCircle from './percentageCircle/percentageCircle'
 import AlignItemsList from './listFeedbacks/listFeedbacks'
 import AddWorkForm from './forms/addWorkForm'
+import ImagesGallery from './imagesGallery/imagesGallery'
 
 export {
     LoginForm,
@@ -31,5 +32,6 @@ export {
     AddProjectForm,
     PercentageRateCircle,
     AlignItemsList,
-    AddWorkForm
+    AddWorkForm,
+    ImagesGallery
 }
