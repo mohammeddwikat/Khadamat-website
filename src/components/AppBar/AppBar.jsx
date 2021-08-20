@@ -18,7 +18,7 @@ import { connect, useDispatch } from "react-redux";
 import { GeneralButton } from "../";
 import { useHistory } from "react-router-dom";
 
-function NavigationBar() {
+function NavigationBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -159,7 +159,7 @@ function NavigationBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="sticky" className={classes.bar}>
+      <AppBar position="sticky" className={classes.bar} style={props.newStyle}>
         <Toolbar>
           <div className={classes.sectionMobile}>
             <IconButton
@@ -213,7 +213,7 @@ function NavigationBar() {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="ابحث عن مشروع..."
+              placeholder={"ابحث عن مشروع..." }
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

@@ -17,7 +17,7 @@ const DatePicker = (props) => {
     };
 
     return (
-        <MuiPickersUtilsProvider className={classes.dialogStyle} utils={DateFnsUtils}> 
+        <MuiPickersUtilsProvider  utils={DateFnsUtils}> 
           <KeyboardDatePicker
             className={classes.root}
             margin="normal"

@@ -2,16 +2,19 @@ import useStyles from "./imageListStyle";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import ImageListItemBar from "@material-ui/core/ImageListItemBar";
-
+import { useState, useEffect } from "react";
 
  const SingleLineImageList = (props) => {
   const classes = useStyles();
-  const itemData = props.items;
-  console.log("lisssssssst images")
-  console.log(itemData)
+  const [itemData, setItemData] = useState([]);
+
+  useEffect(()=>{
+    setItemData(props.items)
+  })
+
   return (
     <div className={classes.root}>
-      <ImageList className={classes.imageList} cols={2.5}>
+      <ImageList  className={classes.imageList} cols={2.5}>
         {itemData.map((item) => (
           <ImageListItem key={item.name}>
             <img  src={URL.createObjectURL(item)} alt={item.name} />

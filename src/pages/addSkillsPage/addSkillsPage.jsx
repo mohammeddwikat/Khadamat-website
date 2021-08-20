@@ -1,10 +1,10 @@
+import useStyle from "./addSkillsPageStyle";
+import {AddSkillsForm} from '../components'
+import {useHistory} from 'react-router-dom'
 import { NavigationBar, Drawer } from "../../components";
 import { Provider } from "react-redux";
 import { rootReducers } from "../../components/Reducers";
 import { createStore } from "redux";
-import useStyle from "./addSkillsPageStyle";
-import {AddSkillsForm} from '../components'
-import {useHistory} from 'react-router-dom'
 const storeNavDrawer = createStore(rootReducers);
 
 const AddSkillsPage = (props) => {

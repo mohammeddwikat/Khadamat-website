@@ -165,8 +165,14 @@ const AddWorkForm = (props) => {
         <Grid item xs={12}>
           عنوان العمل
         </Grid>
-        <Grid item lg={12} md={8} s={10} xs={12}>
+        <Grid item lg={12} md={8} s={10} xs={12} className={classes.marginBottom}>
           <FullTextField name={"title"} id={"title"} />
+        </Grid>
+        <Grid item xs={12}>
+          وصف العمل
+        </Grid>
+        <Grid xs={12}>
+          <FullTextField name={"description"} id={"description"} rows={8} />
         </Grid>
         <Grid style={{ marginBottom: "2em" }} item xs={12}>
           <Grid xs={12}>
@@ -203,7 +209,6 @@ const AddWorkForm = (props) => {
               ref={inputFileImageShow}
               style={{ display: "none" }}
             />
-            
           </Grid>
         </Grid>
         <Grid item xs={12} className={classes.marginBottom}>
@@ -214,27 +219,27 @@ const AddWorkForm = (props) => {
             alt={"placeholder"}
           />
         </Grid>
-        <Grid item> 
-        <GeneralButton
-              newStyle={{
-                margin: 0,
-                marginBottom: "16px",
-                marginTop: "10px",
-                backgroundColor: "white",
-                color: "black",
-              }}
-              onClick={() => inputFile.current.click()}
-              title={"اضافة مقتطفات"}
-            />
-            <input
-              multiple={true}
-              onChange={fileHandler}
-              name="image"
-              type="file"
-              id="file"
-              ref={inputFile}
-              style={{ display: "none" }}
-            />
+        <Grid item>
+          <GeneralButton
+            newStyle={{
+              margin: 0,
+              marginBottom: "16px",
+              marginTop: "10px",
+              backgroundColor: "white",
+              color: "black",
+            }}
+            onClick={() => inputFile.current.click()}
+            title={"اضافة مقتطفات"}
+          />
+          <input
+            multiple={true}
+            onChange={fileHandler}
+            name="image"
+            type="file"
+            id="file"
+            ref={inputFile}
+            style={{ display: "none" }}
+          />
         </Grid>
         <Grid item xs={12}>
           {files.filesList.length !== 0 ? (

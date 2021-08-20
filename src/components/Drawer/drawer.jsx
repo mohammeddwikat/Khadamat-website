@@ -13,19 +13,22 @@ import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import { useEffect, useState } from "react";
 
-function Drawer() {
+function Drawer(props) {
   const classes = useStyles();
   const anchor = "right";
   const history = useHistory();
   const dispatch = useDispatch();
-  const [id, setId] = useState("")
+  const [id, setId] = useState("");
   const state = useSelector((state) => state.DrawerReducer);
 
   const [image, setImage] = useState("");
   useEffect(() => {
     if (sessionStorage.getItem("userData") != null) {
       setId(JSON.parse(sessionStorage.getItem("userData")).id);
-      setImage('https://K.wadq.dev/getProfilePic/'+JSON.parse(sessionStorage.getItem("userData")).id);
+      setImage(
+        "https://K.wadq.dev/getProfilePic/" +
+          JSON.parse(sessionStorage.getItem("userData")).id
+      );
     }
   }, []);
 
@@ -72,6 +75,7 @@ function Drawer() {
 
   const list = (anchor) => (
     <div
+      style={props.adminStyle}
       className={clsx(classes.list, {
         [classes.fullList]: anchor === "top" || anchor === "bottom",
       })}
@@ -101,7 +105,7 @@ function Drawer() {
                 `/profile/${id}`,
                 "/",
                 `/freeLancer/addSkills/${id}`,
-                `/addWork/freelancer/${id}` ,
+                `/addWork/freelancer/${id}`,
                 `/worksGallery/freelancer/${id}`,
                 "/page/signUp",
                 "/",
@@ -128,6 +132,28 @@ function Drawer() {
                 "/",
               ]
             )
+          : JSON.parse(sessionStorage.getItem("userData")).profileType === "A"
+          ? drawerItems(
+              [
+                "مستخدمي خدمات",
+                "المشاريع",
+                "ابلاغات",
+                "المهارات",
+                "التحويلات المالية",
+                "احصائيات خدمات",
+                
+                "تسجيل خروج",
+              ],
+              [
+                "/khadamat/adminPanel/users/" + id.toString(),
+                "/khadamat/adminPanel/projects/" + id.toString(),
+                "/khadamat/adminPanel/reports/"+id.toString(),
+                "/khadamat/adminPanel/skills/"+id.toString(),
+                "/khadamat/adminPanel/transactions/"+id.toString(),
+                "/khadamat/adminPanel/statistics/"+id.toString(), 
+                "/",
+              ]
+            )
           : drawerItems(
               ["صفحة البداية", "تسجيل الدخول", "الانضمام الى خدمات"],
               ["/", "/page/login", "/page/signUp"]
@@ -145,7 +171,7 @@ function Drawer() {
         onOpen={toggleDrawer(anchor, true)}
       >
         {sessionStorage.getItem("userData") != null ? (
-          <div className={classes.headerDrawer}>
+          <div style={props.adminStyle} className={classes.headerDrawer}>
             <Avatar
               alt={JSON.parse(sessionStorage.getItem("userData")).name}
               src={image}

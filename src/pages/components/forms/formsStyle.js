@@ -131,7 +131,26 @@ let useStyles = makeStyles((theme) => ({
   filesNamesBox:{
     display:"flex",
     
-  }
+  },
+  skillFrom:{
+    marginTop: theme.spacing(3),
+    width:"100%",
+    display:"flex",
+    flexDirection:"row-reverse"
+  },
+  adminUniformColor:{
+    color:"darkred"
+  },
+  adminInput:{
+    "& .MuiInputLabel-shrink": {
+        color: "darkred!important",
+      },
+      "& .MuiInput-underline": {
+        "&:after": {
+          borderBottomColor: "darkred!important",
+        },
+    }
+}
  
 }));
 

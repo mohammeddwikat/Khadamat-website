@@ -6,6 +6,7 @@ import AddSkillsPage from './addSkillsPage/addSkillsPage'
 import AddProjectPage from './addProjectPage/addProjectPage'
 import AddWorkPage from './addWork/addWork'
 import WorksGallery from './worksGallery/worksGallery'
+import AdminPage from './adminPage/adminPage'
 
 export {
     EntrancePages,
@@ -15,5 +16,6 @@ export {
     AddSkillsPage,
     AddProjectPage,
     AddWorkPage,
-    WorksGallery
+    WorksGallery,
+    AdminPage
 }

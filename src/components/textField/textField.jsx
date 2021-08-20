@@ -1,6 +1,7 @@
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import useStyles from './textFieldStyle'
+import clsx from 'clsx'
 
 const GeneralTextField = (props) => {
   const classes = useStyles();
@@ -21,9 +22,10 @@ const GeneralTextField = (props) => {
             name={props.id}
             onChange={props.onChange}
             label={props.label}
-            className={classes.inputStyle}
+            className={clsx(classes.inputStyle, props.newClassName)}
             data-cy={props.dataCy}
             style={props.style}
+            
           />
         </Grid>
         <Grid item>

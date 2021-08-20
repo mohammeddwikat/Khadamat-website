@@ -54,14 +54,14 @@ const ImagesGallery = (props) => {
     //history('/freelancer/work/:userId/:workId')
   }
 
-  const height = window.innerWidth
+  const width = window.innerWidth
   return (
     <div className={classes.root}>
-      <ImageList cols={parseInt(height/400)}  spacing={30} rowHeight={500}  className={classes.imageList}>
+      <ImageList cols={parseInt(width/350)}  spacing={20} rowHeight={350}  className={classes.imageList}>
     
         {itemData.map((item) => (
           <ImageListItem key={item.name} className={classes.imageItem}>
-            <img width="300px" height="600px" src={item.img} alt={item.name} />
+            <img width="300px" height="400px" src={item.img} alt={item.name} />
             <ImageListItemBar
               title={item.title}
               subtitle={<span>by: {item.freelancer}</span>}

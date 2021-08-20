@@ -8,6 +8,7 @@ import MultipleSelectChip from './dropListChipMultible/dropListChipMultible'
 import FullTextField from './textField/fullTextFieldOutlined'
 import DatePicker from './datePicker/datePicker'
 import SingleLineImageList from './imageList/imageList'
+import TableData from './table/table'
 
 export  {
     NavigationBar,
@@ -19,5 +20,6 @@ export  {
     MultipleSelectChip,
     FullTextField,
     DatePicker,
-    SingleLineImageList
+    SingleLineImageList,
+    TableData
 }

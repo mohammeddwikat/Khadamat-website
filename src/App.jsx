@@ -5,7 +5,7 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import TextTest from "./test";
 import { combineReducers } from "redux";
-import { NavigationBar, Drawer } from "./components";
+import { NavigationBar, Drawer, TableData } from "./components";
 import { rootReducers } from "./components/Reducers";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import {
@@ -16,9 +16,15 @@ import {
   AddSkillsPage,
   AddProjectPage,
   AddWorkPage,
-  WorksGallery
+  WorksGallery,
+  AdminPage,
 } from "./pages";
-import {ResetPasswordForm} from './pages/components'
+import { AddSkill, StatisticsCards, StatisticCard } from "./pages/components";
+
+import { ResetPasswordForm } from "./pages/components";
+import axios from "axios";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import IconButton from "@material-ui/core/IconButton";
 
 const cc = () => (
   <div>
@@ -124,7 +130,12 @@ function App() {
         <Route
           path="/resetPassword/:accessToken"
           component={({ match }) => (
-            <EntrancePages typePage={"reset"}  form={<ResetPasswordForm accessToken={match.params.accessToken} />}/>
+            <EntrancePages
+              typePage={"reset"}
+              form={
+                <ResetPasswordForm accessToken={match.params.accessToken} />
+              }
+            />
           )}
         />
         <Route
@@ -133,25 +144,128 @@ function App() {
             <ProfilePageFreelancer id={match.params.id} />
           )}
         />
-        <Route 
+        <Route
           path="/productOwner/:id"
-          component= {({match}) => (<ProfileProductOwner id={match.params.id} />)}
+          component={({ match }) => (
+            <ProfileProductOwner id={match.params.id} />
+          )}
         />
-        <Route 
+        <Route
           path="/freeLancer/addSkills/:id"
-          component= {({match}) => <AddSkillsPage id={match.params.id}/>}
+          component={({ match }) => <AddSkillsPage id={match.params.id} />}
         />
-        <Route 
+        <Route
           path="/addProject/productOwner/:id"
-          component= {({match}) => <AddProjectPage id={match.params.id}/>}
+          component={({ match }) => <AddProjectPage id={match.params.id} />}
         />
-        <Route 
+        <Route
           path="/addWork/freelancer/:id"
-          component= {({match}) => <AddWorkPage id={match.params.id}/>}
+          component={({ match }) => <AddWorkPage id={match.params.id} />}
         />
-        <Route 
+        <Route
           path="/worksGallery/freelancer/:id"
-          component= {({match}) => <WorksGallery id={match.params.id}/>}
+          component={({ match }) => <WorksGallery id={match.params.id} />}
+        />
+        <Route
+          path="/khadamat/adminPanel/users/:id"
+          component={({ match }) => (
+            <AdminPage
+              id={match.params.id}
+              tables={[
+                <TableData
+                title={"Khadamat's Users"}
+                  getDataUrl={"https://k.wadq.dev/allUsers"}
+                  deleteDataUrl={"https://k.wadq.dev/deleteUser"}
+                  postDataUrl={"https://k.wadq.dev/editUserData"}
+                  tableCategory={"users"}
+                />,
+              ]}
+            />
+          )}
+        />
+
+        <Route
+          path="/khadamat/adminPanel/projects/:id"
+          component={({ match }) => (
+            <AdminPage
+              id={match.params.id}
+              tables={[
+                <TableData
+                title={"Khadamat's Projects"}
+                  getDataUrl={"https://k.wadq.dev/getAllProjects "}
+                  postDataUrl={"https://k.wadq.dev/editProject"}
+                  tableCategory={"projects"}
+                />,
+              ]}
+            />
+          )}
+        />
+
+        <Route
+          path="/khadamat/adminPanel/reports/:id"
+          component={({ match }) => (
+            <AdminPage
+              id={match.params.id}
+              tables={[
+                
+                <TableData
+                title={"Khadamat's Reports"}
+                  getDataUrl={"https://k.wadq.dev/getAllProblems"}
+                  doneDataUrl={"https://k.wadq.dev/doneProblems"}
+                  tableCategory={"reports"}
+                />,
+              ]}
+            />
+          )}
+        />
+
+        <Route
+          path="/khadamat/adminPanel/skills/:id"
+          component={({ match }) => (
+            <AdminPage
+              id={match.params.id}
+              tables={[
+                <TableData
+                title={"Skills in Khadamat"}
+                  getDataUrl={"https://k.wadq.dev/getAllSkills"}
+                  postDataUrl={"https://k.wadq.dev/editSkill"}
+                  deleteDataUrl={"https://k.wadq.dev/deleteSkill"}
+                  tableCategory={"skills"}
+                />,
+                <br />,
+                <AddSkill />,
+              ]}
+            />
+          )}
+        />
+
+        <Route
+          path="/khadamat/adminPanel/transactions/:id"
+          component={({ match }) => (
+            <AdminPage
+              id={match.params.id}
+              tables={[
+                <TableData
+                title={"Khadamat's Transactions"}
+                  getDataUrl={"https://k.wadq.dev/getAllUserPalnces"}
+                  makePayment={"https://k.wadq.dev/payUser"}
+                  tableCategory={"transactions"}
+                />,
+              ]}
+            />
+          )}
+        />
+
+        <Route
+          path="/khadamat/adminPanel/statistics/:id"
+          component={({ match }) => (
+            <AdminPage
+              id={match.params.id}
+              tables={[
+                <StatisticsCards/>,
+              ]}
+            />
+          )}
         />
       </Switch>
     </Router>

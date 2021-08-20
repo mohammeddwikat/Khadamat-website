@@ -19,6 +19,9 @@ const WorksGallery = (props) => {
         <Drawer />
       </Provider>
       <div className={clsx(classes.worksGallery, classes.rtlDirection)}>
+          <h3>
+              اعمال محمد دويكات
+          </h3>
          <ImagesGallery id={id}/>
       </div>
     </div>

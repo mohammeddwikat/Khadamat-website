@@ -1,9 +1,7 @@
 import { alpha, makeStyles } from '@material-ui/core/styles';
 
-
 let useStyles = makeStyles((theme) => ({
   grow: {
-   
     flexGrow:"1",
     '& PrivateSwipeArea-anchorRight-23':{
       width:"0!important"
@@ -14,8 +12,6 @@ let useStyles = makeStyles((theme) => ({
     position:"fixed",
     width:"100%",
     zIndex: theme.zIndex+1,
-    
-    
   },
   menuButton: {
     marginLeft: theme.spacing(1),
@@ -58,7 +54,6 @@ let useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',

@@ -30,26 +30,33 @@ input[type=number] {
   color: #0077b6 !important;
 }
 
+.MuiDataGrid-toolbarContainer > .MuiButtonBase-root {
+  color: darkred !important;
+}
+
+/* .MuiDataGrid-cell > .MuiButtonBase-root{
+  color: darkred !important;
+} */
+
 @media only screen and (min-width: 600px) {
   
 ::-webkit-scrollbar {
   width: 13px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey; 
   border-radius: 5px;
 }
  
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #0077b6; 
   border-radius: 5px;
 }
 
-/* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
   background: #005590; 
 }
 }
+

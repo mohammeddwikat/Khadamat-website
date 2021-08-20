@@ -15,6 +15,9 @@ import PercentageRateCircle from './percentageCircle/percentageCircle'
 import AlignItemsList from './listFeedbacks/listFeedbacks'
 import AddWorkForm from './forms/addWorkForm'
 import ImagesGallery from './imagesGallery/imagesGallery'
+import AddSkill from './forms/addSkillAdmin'
+import StatisticsCards from './statisticsCards/statisticsCards'
+import StatisticCard from './statisticsCards/statisticCard'
 
 export {
     LoginForm,
@@ -33,5 +36,8 @@ export {
     PercentageRateCircle,
     AlignItemsList,
     AddWorkForm,
-    ImagesGallery
+    ImagesGallery,
+    AddSkill,
+    StatisticsCards,
+    StatisticCard
 }
