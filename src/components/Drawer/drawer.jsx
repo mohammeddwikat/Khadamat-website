@@ -145,12 +145,12 @@ function Drawer(props) {
                 "تسجيل خروج",
               ],
               [
-                "/khadamat/adminPanel/users/" + id.toString(),
-                "/khadamat/adminPanel/projects/" + id.toString(),
-                "/khadamat/adminPanel/reports/"+id.toString(),
-                "/khadamat/adminPanel/skills/"+id.toString(),
-                "/khadamat/adminPanel/transactions/"+id.toString(),
-                "/khadamat/adminPanel/statistics/"+id.toString(), 
+                "/admin/users/" + id.toString(),
+                "/admin/projects/" + id.toString(),
+                "/admin/reports/"+id.toString(),
+                "/admin/skills/"+id.toString(),
+                "/admin/transactions/"+id.toString(),
+                "/admin/statistics/"+id.toString(), 
                 "/",
               ]
             )

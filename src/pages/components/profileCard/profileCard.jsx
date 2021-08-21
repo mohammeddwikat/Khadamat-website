@@ -77,6 +77,9 @@ const ProfileCard = (props) => {
     </div>
   );
   const UserCard = () => (
+
+
+
     <Paper className={classes.paper}>
       <Cover></Cover>
       <Avatar className={classes.avatar} alt="Mohammad Dwikat" src={image} />

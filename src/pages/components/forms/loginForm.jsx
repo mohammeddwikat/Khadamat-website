@@ -29,7 +29,7 @@ const LoginForm = () => {
         history.push('/productOwner/'+JSON.parse(sessionStorage.getItem('userData')).id)
       
       }else if((JSON.parse(sessionStorage.getItem('userData')).profileType) === 'A'){
-        history.push('/khadamat/adminPanel/statistics/'+JSON.parse(sessionStorage.getItem('userData')).id)
+        history.push('/admin/statistics/'+JSON.parse(sessionStorage.getItem('userData')).id)
       }
       else{
         history.push("/page/login")

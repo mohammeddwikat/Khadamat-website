@@ -163,11 +163,11 @@ function App() {
           component={({ match }) => <AddWorkPage id={match.params.id} />}
         />
         <Route
-          path="/worksGallery/freelancer/:id"
+          path="/admin/freelancer/:id"
           component={({ match }) => <WorksGallery id={match.params.id} />}
         />
         <Route
-          path="/khadamat/adminPanel/users/:id"
+          path="/admin/users/:id"
           component={({ match }) => (
             <AdminPage
               id={match.params.id}
@@ -185,7 +185,7 @@ function App() {
         />
 
         <Route
-          path="/khadamat/adminPanel/projects/:id"
+          path="/admin/projects/:id"
           component={({ match }) => (
             <AdminPage
               id={match.params.id}
@@ -202,7 +202,7 @@ function App() {
         />
 
         <Route
-          path="/khadamat/adminPanel/reports/:id"
+          path="/admin/reports/:id"
           component={({ match }) => (
             <AdminPage
               id={match.params.id}
@@ -220,7 +220,7 @@ function App() {
         />
 
         <Route
-          path="/khadamat/adminPanel/skills/:id"
+          path="/admin/skills/:id"
           component={({ match }) => (
             <AdminPage
               id={match.params.id}
@@ -240,7 +240,7 @@ function App() {
         />
 
         <Route
-          path="/khadamat/adminPanel/transactions/:id"
+          path="/admin/transactions/:id"
           component={({ match }) => (
             <AdminPage
               id={match.params.id}
@@ -257,7 +257,7 @@ function App() {
         />
 
         <Route
-          path="/khadamat/adminPanel/statistics/:id"
+          path="/admin/statistics/:id"
           component={({ match }) => (
             <AdminPage
               id={match.params.id}
