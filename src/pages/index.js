@@ -7,6 +7,7 @@ import AddProjectPage from './addProjectPage/addProjectPage'
 import AddWorkPage from './addWork/addWork'
 import WorksGallery from './worksGallery/worksGallery'
 import AdminPage from './adminPage/adminPage'
+import ProjectProfile from './projectPage/projectPage'
 
 export {
     EntrancePages,
@@ -17,5 +18,6 @@ export {
     AddProjectPage,
     AddWorkPage,
     WorksGallery,
-    AdminPage
+    AdminPage,
+    ProjectProfile
 }

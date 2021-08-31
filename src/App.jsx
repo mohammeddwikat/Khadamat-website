@@ -18,6 +18,7 @@ import {
   AddWorkPage,
   WorksGallery,
   AdminPage,
+  ProjectProfile
 } from "./pages";
 import { AddSkill, StatisticsCards, StatisticCard } from "./pages/components";
 
@@ -163,7 +164,7 @@ function App() {
           component={({ match }) => <AddWorkPage id={match.params.id} />}
         />
         <Route
-          path="/admin/freelancer/:id"
+          path="/worksGallery/freelancer/:id"
           component={({ match }) => <WorksGallery id={match.params.id} />}
         />
         <Route
@@ -192,8 +193,11 @@ function App() {
               tables={[
                 <TableData
                 title={"Khadamat's Projects"}
+                  redirectToProject = {"/project/page/"}
                   getDataUrl={"https://k.wadq.dev/getAllProjects "}
                   postDataUrl={"https://k.wadq.dev/editProject"}
+                  deleteDataUrl={"https://k.wadq.dev/deleteProjectbyid"}
+                  doneDataUrl={"https://k.wadq.dev/aproveProject"}
                   tableCategory={"projects"}
                 />,
               ]}
@@ -266,6 +270,15 @@ function App() {
               ]}
             />
           )}
+        />
+
+        <Route
+          path="/project/page/:id"
+          component = {
+            ({match}) =>(
+              <ProjectProfile id={match.params.id}/>
+            )
+          }
         />
       </Switch>
     </Router>

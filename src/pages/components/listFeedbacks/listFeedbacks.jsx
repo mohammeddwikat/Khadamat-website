@@ -56,7 +56,7 @@ export default function AlignItemsList(props) {
       <Divider variant="inset" component="li" />
       <ListItem alignItems="center" >
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          <Avatar alt="Mohammad" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
         className={classes.itemText}

@@ -2,6 +2,8 @@ import useStyle from "./skillsCardStyle";
 import Paper from "@material-ui/core/Paper";
 import Chip from "@material-ui/core/Chip";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { METHODS } from "http";
 
 const SkillsCard = (props) => {
   const classes = useStyle();
@@ -32,15 +34,47 @@ const SkillsCard = (props) => {
       )}
     </Paper>
   );
-  const UserCard = () => (
-    <Paper className={classes.paperSkills}>
-      {["From API", "From API", "From API", "From API", "From API"].map(
-        (skill) => (
-          <Chip className={classes.chip} label={skill} />
-        )
-      )}
-    </Paper>
-  );
+  const UserCard = () => {
+
+    const [skills, setSkills] = useState({
+      userSkills: ['loading', 'loading','loading','loading']
+    })
+
+
+    useEffect(()=>{
+      axios.get(
+        'https://k.wadq.dev/userinfos/'+id
+      ).then(res => {
+        
+       JSON.stringify(res.data.skills)
+        axios(
+          {
+            method:"POST",
+            url :'https://k.wadq.dev/getSkillsAsNames',
+            data: {
+              skills: (res.data.skills)
+            }
+          }
+        ).then(res =>{
+          setSkills({...res.data})
+          console.log(res.data.userSkills)
+        }, err => console.log("baaaaaaaaaaaaaaaaaad"))
+      })
+
+     
+
+    }, [])
+
+    return(
+      <Paper className={classes.paperSkills}>
+        {skills.userSkills.map(
+          (skill) => (
+            <Chip className={classes.chip} label={skill} />
+          )
+        )}
+      </Paper>
+    )
+  };
   const C =
     JSON.parse(sessionStorage.getItem("userData")).id === id ? MyCard : UserCard;
   return <C />;

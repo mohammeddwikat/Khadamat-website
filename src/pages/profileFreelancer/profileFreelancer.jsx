@@ -23,7 +23,7 @@ const ProfilePageFreelancer = (props) => {
 
 
   useEffect(()=> {
-    if(sessionStorage.getItem('userData') === null){
+    if(sessionStorage.getItem('userData') == null){
       history.push("/page/login")
     }
   }, [])
@@ -58,14 +58,14 @@ const ProfilePageFreelancer = (props) => {
               <Grid item lg= {5} md={4} xs={12} >
                 
                 <Paper className={classes.paper}> 
-                  <PercentageRateCircle percent={55}/>
+                  <PercentageRateCircle percent={88}/>
                   <AlignItemsList id={id}/>
                   <Link className={classes.feedbacksLink} to='/'> مشاهدة المزيد من التقييمات</Link>
                 </Paper>
 
               </Grid>
 
-              <Grid item xs={3}>
+              {/* <Grid item xs={3}>
                 <Paper className={classes.paper}>xs=3</Paper>
               </Grid>
               <Grid item xs={3}>
@@ -77,7 +77,7 @@ const ProfilePageFreelancer = (props) => {
               </Grid>
               <Grid item xs={3}>
                 <Paper className={classes.paper}>xs=3</Paper>
-              </Grid>
+              </Grid> */}
             </Grid>
           </div>
         </div>

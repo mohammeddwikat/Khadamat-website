@@ -28,9 +28,8 @@ const StatisticsCards = (props) => {
 
   useEffect(() => {
     axios.get("https://k.wadq.dev/getAllStatics").then((res) => {
-        
       setStatistics({
-          ...res.data
+        ...res.data,
       });
     });
   });
@@ -61,7 +60,11 @@ const StatisticsCards = (props) => {
         icon={<AssignmentTurnedInIcon />}
         count={statistics.Projects.completedProjects}
       />
-      <StatisticCard title={"عدد التحويلات المالية"} icon={<LocalAtmIcon />} count={statistics.transCount}/>
+      <StatisticCard
+        title={"عدد التحويلات المالية"}
+        icon={<LocalAtmIcon />}
+        count={statistics.transCount}
+      />
     </div>
   );
 };

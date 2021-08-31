@@ -12,8 +12,13 @@ const ProfileCard = (props) => {
   const inputFile = useRef(null);
   const [image, setImage] = useState("");
   const id = parseInt(props.id);
+ 
   const Cover = () => <div className={classes.coverCard} />;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setImage(`https://K.wadq.dev/getProfilePic/${id}`);
+  });
 
   const handleClick = (statusSnack, textSnack) => {
     dispatch({
@@ -47,9 +52,7 @@ const ProfileCard = (props) => {
     );
   };
 
-  useEffect(() => {
-    setImage(`https://K.wadq.dev/getProfilePic/${id}`);
-  }, []);
+ 
 
   const MyCard = () => (
     <div>
@@ -76,18 +79,35 @@ const ProfileCard = (props) => {
       </Paper>
     </div>
   );
-  const UserCard = () => (
+  const UserCard = () => {
 
+    const [userInfo, setUserInfo] = useState({
+      email:"loading",
+      name:"loading",
+      city: "loading"
+    })
 
+    useEffect(()=>{
+      axios.get(
+        'https://k.wadq.dev/userinfos/'+id
+      ).then(res => {
+        
+        setUserInfo({
+          ...res.data
+        })
+      })
+    }, [])
 
-    <Paper className={classes.paper}>
-      <Cover></Cover>
-      <Avatar className={classes.avatar} alt="Mohammad Dwikat" src={image} />
-      <h2 style={{ marginBottom: "0" }}>request from API</h2>
-      <h3>request from API</h3>
-      <GeneralButton onClick={() => alert("asd")} title={"ارسال رسالة"} />
-    </Paper>
-  );
+    return(
+      <Paper className={classes.paper}>
+        <Cover></Cover>
+        <Avatar className={classes.avatar} alt="Mohammad Dwikat" src={image} />
+        <h2 style={{ marginBottom: "0" }}>{userInfo.name}</h2>
+        <h3>{userInfo.city}</h3>
+        <GeneralButton onClick={() => alert("asd")} title={"ارسال رسالة"} />
+      </Paper>
+    )
+  };
   const C =
     JSON.parse(sessionStorage.getItem("userData")).id === id 
       ? MyCard

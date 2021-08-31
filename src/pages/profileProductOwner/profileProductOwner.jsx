@@ -41,10 +41,10 @@ const ProfileProductOwner = (props) => {
               <Grid item lg={4} xs={12}>
                   <InfoCard id={id}></InfoCard>
               </Grid>
-              <Grid item xs={3} ا4>
+              {/* <Grid item xs={3} ا4>
                 <Paper className={classes.paper}>xs=6</Paper>
-              </Grid>
-
+              </Grid> */}
+{/* 
               <Grid item xs={3}>
                 <Paper className={classes.paper}>xs=3</Paper>
               </Grid>
@@ -56,7 +56,7 @@ const ProfileProductOwner = (props) => {
               </Grid>
               <Grid item xs={3}>
                 <Paper className={classes.paper}>xs=3</Paper>
-              </Grid>
+              </Grid> */}
             </Grid>
             </div>
             

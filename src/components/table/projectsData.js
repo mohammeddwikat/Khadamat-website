@@ -23,12 +23,12 @@ let projectsColumns = [
     width: 170,
     editable: true,
   },
-  {
-    field: "skills",
-    headerName: "skills",
-    width: 110,
-    editable: true,
-  },
+  // {
+  //   field: "skills",
+  //   headerName: "skills",
+  //   width: 110,
+  //   editable: true,
+  // },
   {
     field: "budget",
     headerName: "Budget",
@@ -47,24 +47,24 @@ let projectsColumns = [
 //     width: 140,
 //     editable: true,
 //   },
-//   {
-//     field: "type",
-//     headerName: "type",
-//     width: 120,
-//     editable: true,
-//   },
   {
-    field: "city",
-    headerName: "city",
+    field: "type",
+    headerName: "type",
     width: 120,
     editable: true,
   },
-  {
-    field: "location",
-    headerName: "location",
-    width: 130,
-    editable: true,
-  },
+  // {
+  //   field: "city",
+  //   headerName: "city",
+  //   width: 120,
+  //   editable: true,
+  // },
+  // {
+  //   field: "location",
+  //   headerName: "location",
+  //   width: 130,
+  //   editable: true,
+  // },
   {
     field: "freelancerid",
     headerName: "freelancer ID",

@@ -43,12 +43,12 @@ let userColumns = [
     width: 120,
     editable: true,
   },
-  {
-    field: 'skills',
-    headerName: 'skills',
-    width: 120,
-    editable: true,
-  }
+  // {
+  //   field: 'skills',
+  //   headerName: 'skills',
+  //   width: 120,
+  //   editable: true,
+  // }
 ]
 
 export default userColumns 

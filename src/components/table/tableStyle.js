@@ -4,15 +4,17 @@ import { makeStyles } from "@material-ui/core/styles";
 
 let useStyle = makeStyles((theme) => ({
   checkButton: {
-    color:"green"
+    color: "green",
   },
-  deleteButton:{
-      color:"red"
+  deleteButton: {
+    color: "red",
   },
-  paymentButton:{
-      color:"darkred"
-  }
-  
+  paymentButton: {
+    color: "darkred",
+  },
+  redirectButton: {
+    color: "#0077b6",
+  },
 }));
 
 export default useStyle;
