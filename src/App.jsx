@@ -214,6 +214,7 @@ function App() {
                 
                 <TableData
                 title={"Khadamat's Reports"}
+                redirectToProject = {"/project/page/"}
                   getDataUrl={"https://k.wadq.dev/getAllProblems"}
                   doneDataUrl={"https://k.wadq.dev/doneProblems"}
                   tableCategory={"reports"}

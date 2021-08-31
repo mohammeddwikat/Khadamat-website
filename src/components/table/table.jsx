@@ -33,6 +33,7 @@ const TableData = (props) => {
     align: "center",
 
     renderCell: (cellValues) => {
+      
       return (
         <IconButton
           onClick={(event) => {
@@ -42,7 +43,7 @@ const TableData = (props) => {
                 : cellValues.row.profiletype == "F"
                 ? "/profile/" + cellValues.row.id
                 : redirectToProject != null
-                ? redirectToProject + cellValues.row.id
+                ? redirectToProject + (type == 'projects' ? cellValues.row.id : cellValues.row.pid)
                 : "/",
               "_blank"
             );
@@ -203,7 +204,7 @@ const TableData = (props) => {
       break;
     case "reports":
       cols = reportColumns;
-      cols = [...cols, doneRow, deleteRow];
+      cols = [...cols, toProfile, doneRow, deleteRow];
       break;
   }
   const columns = [...cols];
